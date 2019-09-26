@@ -1,0 +1,21 @@
+version: '3'
+networks:
+    gutester:
+services:
+    redis:
+        image: redis
+        container_name: redis_cache
+        networks:
+            - gutester
+        expose:
+            - 6379
+    mongodb:
+        image: 'mongo:latest'
+        container_name: mongodb
+        networks:
+            - gutester        
+        environment:
+            - MONGO_DATA_DIR=/data/db
+            - MONGO_LOG_DIR=/dev/null
+        ports:
+            - '27017:27017'

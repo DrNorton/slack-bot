@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0efeccc3-3b02-4820-b3c7-465b9c4b0469" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/apiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/apiErrorProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/providers/apiErrorProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/pages/faq/components/faqItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/faq/components/faqItemList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ducks/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ducks/image.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/sidebar/components/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/sidebar/components/profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/sidebar/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reduxx/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reduxx/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reduxx/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reduxx/reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reduxx/saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reduxx/saga.ts" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1QKml1KQdcco4DjWwYq2nXRvGG9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\dimai\AppData\Roaming\npm\node_modules\prettier" />
+    <property name="ts.external.directory.path" value="C:\workspace\work\bot-project\bot-admin\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\assets\images" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\components\providers" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\layouts\sidebar" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0efeccc3-3b02-4820-b3c7-465b9c4b0469" name="Default Changelist" comment="" />
+      <created>1567527809388</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567527809388</updated>
+      <workItem from="1567527813691" duration="6516000" />
+      <workItem from="1567588391339" duration="7705000" />
+      <workItem from="1567609971649" duration="150000" />
+      <workItem from="1567610326581" duration="12751000" />
+      <workItem from="1567697752283" duration="5523000" />
+      <workItem from="1567979311541" duration="5554000" />
+      <workItem from="1568027089883" duration="21565000" />
+      <workItem from="1568147263927" duration="13813000" />
+      <workItem from="1568228082655" duration="3227000" />
+      <workItem from="1568241324359" duration="984000" />
+      <workItem from="1568318406662" duration="37065000" />
+      <workItem from="1568650371881" duration="18759000" />
+      <workItem from="1568746268223" duration="12000" />
+      <workItem from="1568760747049" duration="38694000" />
+      <workItem from="1568989400543" duration="41265000" />
+      <workItem from="1569359734167" duration="10391000" />
+    </task>
+    <task id="LOCAL-00001" summary="Init repo">
+      <created>1568063215457</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1568063215457</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Перешёл на другой шаблон">
+      <created>1568198138910</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568198138910</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init repo" />
+    <MESSAGE value="Перешёл на другой шаблон" />
+    <option name="LAST_COMMIT_MESSAGE" value="Перешёл на другой шаблон" />
+  </component>
+</project>
