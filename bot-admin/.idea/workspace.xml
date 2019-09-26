@@ -52,9 +52,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\components\navigation" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\components\navigation\components" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src" />
       <recent name="C:\workspace\work\bot-project\bot-admin\src\assets\images" />
       <recent name="C:\workspace\work\bot-project\bot-admin\src\components\providers" />
-      <recent name="C:\workspace\work\bot-project\bot-admin\src\layouts\sidebar" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -94,7 +96,7 @@
       <workItem from="1568746268223" duration="12000" />
       <workItem from="1568760747049" duration="38694000" />
       <workItem from="1568989400543" duration="41265000" />
-      <workItem from="1569359734167" duration="10391000" />
+      <workItem from="1569359734167" duration="19969000" />
     </task>
     <task id="LOCAL-00001" summary="Init repo">
       <created>1568063215457</created>
@@ -132,6 +134,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init repo" />
     <MESSAGE value="Перешёл на другой шаблон" />
-    <option name="LAST_COMMIT_MESSAGE" value="Перешёл на другой шаблон" />
+    <MESSAGE value="Бек:&#10;Реализовал методы для получения, добавления комнат&#10;Фронт:&#10;Переделал меню (сделал иерархическим)&#10;Подключил calendar.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Бек:&#10;Реализовал методы для получения, добавления комнат&#10;Фронт:&#10;Переделал меню (сделал иерархическим)&#10;Подключил calendar.js" />
   </component>
 </project>

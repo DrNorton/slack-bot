@@ -45,7 +45,14 @@ interface Props extends RouteComponentProps {
 export interface SidebarMenuItem {
   icon?: any;
   title: string;
-  route: string;
+  href: string;
+  children?:SidebarMenuItem[];
+}
+
+export interface SidebarPageBlock {
+  title:string;
+  pages:SidebarMenuItem[];
+
 }
 
 function Sidebar(props: Props) {

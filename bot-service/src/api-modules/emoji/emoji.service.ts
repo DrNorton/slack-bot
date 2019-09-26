@@ -11,7 +11,6 @@ export class EmojiService {
   constructor(
     @InjectRepository(EmojiEntity)
     private readonly emojiRepository: Repository<EmojiEntity>,
-    private readonly slackApiService: SlackApiService,
   ) {}
 
   public async getEmoji(teamId: string) {

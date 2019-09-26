@@ -9,6 +9,7 @@ import { UserEntity } from './api-modules/user/entity/user.entity';
 import { MemberEntity } from './api-modules/members/entity/member.entity';
 import { EmojiEntity } from './api-modules/emoji/entity/emoji.entity';
 import { InternalModule } from './internal/internal.module';
+import { RoomEntity } from './api-modules/booking/rooms/entity/room.entity';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { InternalModule } from './internal/internal.module';
         UserEntity,
         MemberEntity,
         EmojiEntity,
+        RoomEntity,
       ],
       synchronize: true,
       logging: true,

@@ -7,7 +7,7 @@ import EmojiController from './emoji.controller';
 import EmojiStorage from './emoji.storage';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([EmojiEntity]), SlackApiModule],
+  imports: [TypeOrmModule.forFeature([EmojiEntity])],
   providers: [EmojiService, EmojiStorage],
   controllers: [EmojiController],
   exports: [EmojiService, EmojiStorage],

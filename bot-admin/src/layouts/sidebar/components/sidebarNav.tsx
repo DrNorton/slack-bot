@@ -1,26 +1,15 @@
-/* eslint-disable react/no-multi-comp */
-/* eslint-disable react/display-name */
 import React, { forwardRef } from "react";
 import { NavLink as RouterLink } from "react-router-dom";
-import clsx from "clsx";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
+import { colors, Theme, createStyles } from "@material-ui/core";
+import { SidebarMenuItem, SidebarPageBlock } from "../sidebar";
 import {
-  List,
-  ListItem,
-  Button,
-  colors,
-  Theme,
-  createStyles
-} from "@material-ui/core";
-import { SidebarMenuItem } from "../sidebar";
-import {Dashboard, QuestionAnswer, Score} from "@material-ui/icons";
-import requireAuth from "../../../decorators/requireAuth";
-import MainPage from "../../../components/pages/main/mainPage";
-import faqListPage from "../../../components/pages/faq/faqListPage";
-import addFaqItemPage from "../../../components/pages/faq/addFaqItemPage";
-import enterPage from "../../../components/pages/auth/enterPage";
-import loginPage from "../../../components/pages/auth/loginPage";
+  DashboardOutlined,
+  MeetingRoomOutlined,
+  QuestionAnswerOutlined,
+  ScoreOutlined
+} from "@material-ui/icons";
+import Navigation from "../../../components/navigation/navigation";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,35 +41,56 @@ const useStyles = makeStyles((theme: Theme) =>
       "& $icon": {
         color: theme.palette.primary.main
       }
+    },
+    navigation: {
+      marginTop: theme.spacing(2)
     }
   })
 );
 
-const CustomRouterLink = forwardRef((props:any, ref) => (
-  <div  style={{ flexGrow: 1 }}>
-    <RouterLink exact={true}  to={props.href} activeClassName={props.activeClassName} {...props} />
+const CustomRouterLink = forwardRef((props: any, ref) => (
+  <div style={{ flexGrow: 1 }}>
+    <RouterLink
+      exact={true}
+      to={props.href}
+      activeClassName={props.activeClassName}
+      {...props}
+    />
   </div>
 ));
 
 interface SidebarNavProps {
-  className:any;
+  className: any;
 }
-const menu: SidebarMenuItem[] = [
-    {
+const menu: SidebarPageBlock[] = [
+  {
+    title: "Pages",
+    pages: [
+      {
         title: "Главная",
-        icon: <Dashboard />,
-        route:"/",
-    },
-    {
+        icon: DashboardOutlined,
+        href: "/"
+      },
+      {
         title: "Вопросы и ответы",
-        icon: <QuestionAnswer/>,
-        route: "/faq"
-    },
-    {
+        icon: QuestionAnswerOutlined,
+        href: "/faq"
+      },
+      {
         title: "Счёт",
-        icon: <Score/>,
-        route: "/score"
-    }
+        icon: ScoreOutlined,
+        href: "/score"
+      },
+      {
+        title: "Переговорки",
+        icon: MeetingRoomOutlined,
+        href: "/booking",
+        children: [
+          { title: "Расписание", href: "/booking/schedule" }
+        ]
+      }
+    ]
+  }
 ];
 
 function SidebarNav(props: SidebarNavProps) {
@@ -88,23 +98,17 @@ function SidebarNav(props: SidebarNavProps) {
 
   const classes = useStyles();
 
-
   return (
-    <List {...rest} className={clsx(classes.root, className)}>
-      {menu.map(page => (
-        <ListItem className={classes.item} disableGutters key={page.title}>
-          <Button
-            activeClassName={classes.active}
-            className={classes.button}
-            component={CustomRouterLink}
-            href={page.route}
-          >
-            <div className={classes.icon}>{page.icon}</div>
-            {page.title}
-          </Button>
-        </ListItem>
+    <nav className={classes.navigation}>
+      {menu.map(list => (
+        <Navigation
+          component="div"
+          key={list.title}
+          pages={list.pages}
+          title={list.title}
+        />
       ))}
-    </List>
+    </nav>
   );
 }
 
