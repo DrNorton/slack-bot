@@ -1,4 +1,10 @@
 {
+  "majestic": {
+    "args": ["-i -c ./test/jest-unit.json"],
+    "env": {
+      "CI": "true"
+    }
+  },
   "name": "push-notificator",
   "version": "0.0.1",
   "description": "",
@@ -9,17 +15,18 @@
     "build": "rimraf dist && tsc --build",
     "onlybuild": "rimraf dist && tsc --build",
     "format": "prettier --write \"src/**/*.ts\"",
-    "start": "npm run build:live",
+    "start": "npm run start:dev",
     "build:live": "nodemon --watch src/**/*.ts --exec ts-node src/main.ts",
-    "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/src/main.js\"",
+    "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
     "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
     "start:prod": "node dist/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "jest -c ./test/jest-unit.json",
+    "test": "jest -i -c ./test/jest-unit.json",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "majestic": "majestic --app"
   },
   "dependencies": {
     "@nestjs/common": "^6.6.7",
@@ -48,6 +55,7 @@
     "pg": "^7.12.1",
     "reflect-metadata": "^0.1.12",
     "slackify-markdown": "^1.1.1",
+    "sqlite3": "^4.1.0",
     "swagger-ui-express": "^4.0.7",
     "typeorm": "^0.2.18"
   },

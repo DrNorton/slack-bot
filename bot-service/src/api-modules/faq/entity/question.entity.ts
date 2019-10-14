@@ -5,7 +5,9 @@ import {
   CreateDateColumn,
   Column,
   OneToOne,
-  JoinColumn, OneToMany, ManyToOne,
+  JoinColumn,
+  OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { AnswerEntity } from './answer.entity';
 import { Transform } from 'class-transformer';
@@ -24,6 +26,9 @@ export class QuestionEntity {
   @CreateDateColumn()
   public created: Date;
 
-  @ManyToOne(type => TeamEntity, team => team.questions, { cascade: true })
+  @ManyToOne(type => TeamEntity, team => team.questions, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   team: TeamEntity;
 }

@@ -9,7 +9,10 @@ import { UserEntity } from './api-modules/user/entity/user.entity';
 import { MemberEntity } from './api-modules/members/entity/member.entity';
 import { EmojiEntity } from './api-modules/emoji/entity/emoji.entity';
 import { InternalModule } from './internal/internal.module';
-import { RoomEntity } from './api-modules/booking/rooms/entity/room.entity';
+import { RoomEntity } from './api-modules/booking/meetingRooms/rooms/entity/room.entity';
+import { RoomAttributeTypeEntity } from './api-modules/booking/meetingRooms/attributeTypes/entity/room.attributeType.entity';
+import { RoomAttributeEntity } from './api-modules/booking/meetingRooms/attributes/entity/roomAttribute.entity';
+import { ImageEntity } from './api-modules/image/entity/image.entity';
 
 @Module({
   imports: [
@@ -28,6 +31,9 @@ import { RoomEntity } from './api-modules/booking/rooms/entity/room.entity';
         MemberEntity,
         EmojiEntity,
         RoomEntity,
+        RoomAttributeEntity,
+        RoomAttributeTypeEntity,
+        ImageEntity,
       ],
       synchronize: true,
       logging: true,

@@ -5,7 +5,8 @@ import {
   CreateDateColumn,
   Column,
   PrimaryColumn,
-  OneToMany, ManyToOne,
+  OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { TeamEntity } from '../../team/entity/team.entity';
 
@@ -26,7 +27,10 @@ export class UserEntity {
   @Column()
   isAdmin: boolean;
 
-  @ManyToOne(type => TeamEntity, team => team.users, { cascade: true })
+  @ManyToOne(type => TeamEntity, team => team.users, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   team: TeamEntity;
 
   @CreateDateColumn()

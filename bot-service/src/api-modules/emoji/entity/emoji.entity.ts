@@ -26,7 +26,7 @@ export class EmojiEntity {
   @PrimaryColumn({ nullable: false })
   teamId: string;
 
-  @ManyToOne(type => TeamEntity, team => team.emojiis)
+  @ManyToOne(type => TeamEntity, team => team.emojiis, { onDelete: 'CASCADE' })
   team: TeamEntity;
 
   @CreateDateColumn()

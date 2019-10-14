@@ -23,7 +23,7 @@ export class MemberEntity {
   @Column({ nullable: true })
   avatarUrl: string;
 
-  @ManyToOne(type => TeamEntity, team => team.members)
+  @ManyToOne(type => TeamEntity, team => team.members, { onDelete: 'CASCADE' })
   team: TeamEntity;
 
   @CreateDateColumn()

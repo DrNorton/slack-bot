@@ -12,7 +12,8 @@ import { UserEntity } from '../../user/entity/user.entity';
 import { QuestionEntity } from '../../faq/entity/question.entity';
 import { MemberEntity } from '../../members/entity/member.entity';
 import { EmojiEntity } from '../../emoji/entity/emoji.entity';
-import { RoomEntity } from '../../booking/rooms/entity/room.entity';
+import { RoomEntity } from '../../booking/meetingRooms/rooms/entity/room.entity';
+import { RoomAttributeTypeEntity } from '../../booking/meetingRooms/attributeTypes/entity/room.attributeType.entity';
 
 @Entity('team')
 export class TeamEntity {
@@ -41,11 +42,16 @@ export class TeamEntity {
   @OneToMany(type => QuestionEntity, question => question.id)
   questions: QuestionEntity[];
 
-  @OneToMany(type => EmojiEntity, emoji => emoji.name, { cascade: true })
+  @OneToMany(type => EmojiEntity, emoji => emoji.name, {
+    cascade: true,
+  })
   emojiis: EmojiEntity[];
 
   @OneToMany(type => RoomEntity, room => room.id)
   rooms: RoomEntity[];
+
+  @OneToMany(type => RoomAttributeTypeEntity, room => room.id)
+  attributeTypes: RoomAttributeTypeEntity[];
 
   @CreateDateColumn()
   public created: Date;
