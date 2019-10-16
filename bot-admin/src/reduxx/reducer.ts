@@ -7,6 +7,7 @@ import { FaqModel, faqReducer } from "../ducks/faq";
 import { Record } from "immutable";
 import { AuthModel, authReducer } from "../ducks/auth";
 import { ScoreModel, scoreReducer } from "../ducks/score";
+import { roomsReducer, RoomsModel } from "../ducks/booking/rooms";
 
 export interface ReduxState {
   faq: Record<FaqModel>;
@@ -14,6 +15,7 @@ export interface ReduxState {
   error: ApiError;
   auth: Record<AuthModel>;
   score: Record<ScoreModel>;
+  rooms: Record<RoomsModel>;
 }
 
 export default (history: any) =>
@@ -23,5 +25,6 @@ export default (history: any) =>
     faq: faqReducer,
     error: errorsReducer,
     auth: authReducer,
-    score: scoreReducer
+    score: scoreReducer,
+    rooms: roomsReducer
   });

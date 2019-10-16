@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
-
+import TitleContainerPage from "../components/common/titleContainerPage";
 
 const useStyles = makeStyles(() => ({
   content: {
@@ -14,6 +14,10 @@ const MinimalLayout = props => {
 
   const classes = useStyles();
 
-  return <main className={classes.content}>{children}</main>;
+  return (
+    <main className={classes.content}>
+      {children}
+    </main>
+  );
 };
 export default MinimalLayout;

@@ -7,7 +7,7 @@ export type FabButtonStylesKey =
 export const fabButtonStyles: StyleRulesCallback<Theme,{},FabButtonStylesKey> = (theme: Theme) => ({
     fab: {
         position: "fixed",
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.primary.main,
         color: "white",
         bottom: theme.spacing(),
         right: theme.spacing() * 3,

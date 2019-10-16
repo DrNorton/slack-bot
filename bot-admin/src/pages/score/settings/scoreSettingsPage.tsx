@@ -2,7 +2,6 @@ import * as React from "react";
 import { ReduxState } from "../../../reduxx/reducer";
 import { connect } from "react-redux";
 import {
-  Typography,
   withStyles,
   Theme,
   StyleRulesCallback,

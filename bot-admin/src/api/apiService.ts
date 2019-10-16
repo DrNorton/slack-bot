@@ -5,6 +5,8 @@ import ImageDto from "./requests/image.dto";
 import { EmojiDto } from "./requests/emoji.dto";
 import TopItemDto from "./requests/topItemDto";
 import { WinnerPeriod } from "./requests/winnerPeriod";
+import RoomDto from "./requests/booking/room.dto";
+import { RoomAttributeTypeDto } from "./requests/booking/roomAttribute.dto";
 
 export interface BaseApiResponse<T> {
   errorCode: number;
@@ -18,21 +20,7 @@ interface RequestOptions {
 }
 
 export default class ApiService {
-  private baseUrl: string;
-
-  constructor() {
-    if (process.env.REACT_APP_SERVER_URL) {
-      this.baseUrl = process.env.REACT_APP_SERVER_URL;
-    } else {
-      // eslint-disable-next-line no-restricted-globals
-      const protocol = location.protocol;
-      const slashes = protocol.concat("//");
-      const host = slashes.concat(
-        `${window.location.hostname}:${window.location.port}`
-      );
-      this.baseUrl = `${host}/api`;
-    }
-  }
+  constructor() {}
 
   public async getImages(): Promise<ImageDto[]> {
     const url = `${apiUrls.image}`;
@@ -71,7 +59,7 @@ export default class ApiService {
   }
 
   public async uploadFile(file: File) {
-    const url = `${this.baseUrl}${apiUrls.image}`;
+    const url = apiUrls.image;
     const formData = new FormData();
     formData.append("file", new Blob([file]), file.name);
     const config = {
@@ -137,11 +125,55 @@ export default class ApiService {
     return result;
   }
 
+  //booking
+  public async getRooms(): Promise<RoomDto[]> {
+    const url = `${apiUrls.room}`;
+    const result = await this.getRequest<RoomDto[]>(url);
+    return result;
+  }
+
+  //booking
+  public async addRoom(data: RoomDto): Promise<RoomDto> {
+    const url = `${apiUrls.room}`;
+    const result = await this.putRequest<RoomDto>(url, data);
+    return result;
+  }
+
+  //booking
+  public async deleteRooms(ids: number[]): Promise<RoomDto> {
+    const idsStr = ids.join(",");
+    const url = `${apiUrls.room}/items/${idsStr}`;
+    const result = await this.deleteRequest<RoomDto>(url);
+    return result;
+  }
+  public async deleteAttributeTypes(ids: number[]): Promise<boolean> {
+    const idsStr = ids.join(",");
+    const url = `${apiUrls.attributeTypes}/items/${idsStr}`;
+    const result = await this.deleteRequest<boolean>(url);
+    return result;
+  }
+
+
+
+  public async getAttributeTypes(): Promise<RoomAttributeTypeDto[]> {
+    const url = `${apiUrls.attributeTypes}`;
+    const result = await this.getRequest<RoomAttributeTypeDto[]>(url);
+    return result;
+  }
+
+  public async addAttributeType(
+    newType: RoomAttributeTypeDto
+  ): Promise<RoomAttributeTypeDto> {
+    const url = `${apiUrls.attributeTypes}`;
+    const result = await this.putRequest<RoomAttributeTypeDto>(url, newType);
+    return result;
+  }
+
   private async getRequest<R>(
     url: string,
     options?: RequestOptions
   ): Promise<R> {
-    const get = axios.get(`${this.baseUrl}${url}`, this.getConfig(options));
+    const get = axios.get(url, this.getConfig(options));
 
     return await this.executeRequest(get);
   }
@@ -152,7 +184,7 @@ export default class ApiService {
     options?: RequestOptions
   ): Promise<R> {
     return await this.executeRequest(
-      axios.put(`${this.baseUrl}${url}`, data, this.getConfig(options))
+      axios.put(url, data, this.getConfig(options))
     );
   }
 
@@ -162,7 +194,7 @@ export default class ApiService {
     options?: RequestOptions
   ): Promise<R> {
     return await this.executeRequest(
-      axios.post(`${this.baseUrl}${url}`, data, this.getConfig(options))
+      axios.post(url, data, this.getConfig(options))
     );
   }
 
@@ -171,7 +203,7 @@ export default class ApiService {
     options?: RequestOptions
   ): Promise<R> {
     return await this.executeRequest(
-      axios.delete(`${this.baseUrl}${url}`, this.getConfig(options))
+      axios.delete(url, this.getConfig(options))
     );
   }
 
@@ -188,7 +220,8 @@ export default class ApiService {
 
     if (token) {
       config = {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
+        timeout: 15000
       };
     }
     return config;
@@ -219,9 +252,11 @@ export default class ApiService {
   }
 }
 const apiUrls = {
-  faq: "/faq",
-  image: "/image",
-  user: "/user",
-  emoji: "/emoji",
-  score: "/score"
+  faq: "/api/faq",
+  image: "/api/image",
+  user: "/api/user",
+  emoji: "/api/emoji",
+  room: "/api/room",
+  score: "/api/score",
+  attributeTypes: "/api/attributetypes"
 };

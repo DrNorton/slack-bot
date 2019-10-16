@@ -41,6 +41,7 @@ export interface Props {
   saveClickHandler?: () => void;
   isOpen: boolean;
   saveButtonDisabled: boolean;
+  fullscreen?:boolean;
 }
 
 const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
@@ -89,6 +90,7 @@ export default function PopupDialog(props: Props) {
   return (
     <Dialog
       fullWidth={true}
+      fullScreen={props.fullscreen}
       maxWidth="md"
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"

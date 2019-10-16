@@ -1,18 +1,19 @@
 import React from "react";
 import { Switch } from "react-router-dom";
-
 import MainPage from "./pages/main/mainPage";
 import MainLayout from "./layouts/mainLayout";
 import RouteWithLayout from "./decorators/routeWithLayout";
 import FaqListPage from "./pages/faq/faqListPage";
 import AddFaqItemPage from "./pages/faq/addFaqItemPage";
-import EnterPage from "./pages/auth/enterPage";
 import loginPage from "./pages/auth/loginPage";
 import MinimalLayout from "./layouts/minimalLayout";
 import requireAuth from "./decorators/requireAuth";
 import ScorePage from "./pages/score/scorePage";
 import ScoreSettingsPage from "./pages/score/settings/scoreSettingsPage";
-import BookingSchedulePage from "./pages/bookingRoom/bookingSchedulePage";
+import BookingSchedulePage from "./pages/bookingRoom/schedule/bookingSchedulePage";
+import MeetingRoomsPage from "./pages/bookingRoom/rooms/list/meetingRoomsPage";
+import AddOrEditRoomPage from "./pages/bookingRoom/rooms/addOrEdit/addOrEditRoomPage";
+import SettingsPage from "./pages/bookingRoom/rooms/settings/settingsPage";
 
 const Routes = () => {
   return (
@@ -78,6 +79,46 @@ const Routes = () => {
         exact={true}
         layout={MainLayout}
         path="/booking/schedule"
+      />
+
+      <RouteWithLayout
+        title="Комнаты"
+        component={requireAuth(MeetingRoomsPage)}
+        exact={true}
+        layout={MainLayout}
+        path="/booking/rooms"
+      />
+
+      <RouteWithLayout
+        title="Настройки"
+        component={requireAuth(SettingsPage)}
+        exact={true}
+        layout={MainLayout}
+        path="/booking/settings"
+      />
+
+      <RouteWithLayout
+        title="Настройки"
+        component={requireAuth(SettingsPage)}
+        exact={true}
+        layout={MainLayout}
+        path="/booking/settings/:tab"
+      />
+
+      <RouteWithLayout
+        title="Добавление"
+        component={requireAuth(AddOrEditRoomPage)}
+        exact={true}
+        layout={MainLayout}
+        path="/booking/rooms/add"
+      />
+
+      <RouteWithLayout
+        title="Добавление"
+        component={requireAuth(AddOrEditRoomPage)}
+        exact={true}
+        layout={MainLayout}
+        path="/booking/rooms/:roomId"
       />
     </Switch>
   );

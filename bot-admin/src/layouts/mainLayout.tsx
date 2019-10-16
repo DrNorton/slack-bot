@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/styles";
-import { Theme, useMediaQuery } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import { Theme } from "@material-ui/core";
 
-import Sidebar, { SidebarMenuItem } from "./sidebar/sidebar";
+import Sidebar from "./sidebar/sidebar";
 import Topbar from "./sidebar/components/topBar";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     paddingTop: 56,
+    padding: theme.spacing(3),
     height: "100%",
     [theme.breakpoints.up("sm")]: {
       paddingTop: 64
@@ -19,14 +19,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: 240
   },
   content: {
-    height: "100%"
+    height: "100%",
+    padding: theme.spacing(3)
   }
 }));
 interface Props {
   children?: React.ReactNode;
+  title: string;
 }
 function MainLayout(props: Props) {
-  const { children } = props;
+  const { children, title } = props;
   const classes = useStyles();
   const isDesktop = true;
 

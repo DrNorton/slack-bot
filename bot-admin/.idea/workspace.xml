@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0efeccc3-3b02-4820-b3c7-465b9c4b0469" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/apiService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/apiErrorProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/providers/apiErrorProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/faq/components/faqItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/faq/components/faqItemList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ducks/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ducks/image.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/sidebar/components/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/sidebar/components/profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/sidebar/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/sidebar/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reduxx/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reduxx/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reduxx/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reduxx/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reduxx/saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reduxx/saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bot-service/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-service/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bot-service/src/api-modules/booking/booking.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-service/src/api-modules/booking/booking.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bot-service/src/api-modules/team/entity/team.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-service/src/api-modules/team/entity/team.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bot-service/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-service/src/app.module.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,13 +16,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1QKml1KQdcco4DjWwYq2nXRvGG9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -52,11 +44,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\workspace\work\bot-project\bot-admin\src\components\navigation" />
-      <recent name="C:\workspace\work\bot-project\bot-admin\src\components\navigation\components" />
-      <recent name="C:\workspace\work\bot-project\bot-admin\src" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\pages\bookingRoom\rooms\list" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\pages\bookingRoom\rooms\settings" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src\api\requests\booking" />
       <recent name="C:\workspace\work\bot-project\bot-admin\src\assets\images" />
-      <recent name="C:\workspace\work\bot-project\bot-admin\src\components\providers" />
+      <recent name="C:\workspace\work\bot-project\bot-admin\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -96,7 +88,25 @@
       <workItem from="1568746268223" duration="12000" />
       <workItem from="1568760747049" duration="38694000" />
       <workItem from="1568989400543" duration="41265000" />
-      <workItem from="1569359734167" duration="19969000" />
+      <workItem from="1569359734167" duration="21212000" />
+      <workItem from="1569691559432" duration="4592000" />
+      <workItem from="1569698087718" duration="2667000" />
+      <workItem from="1569844530188" duration="640000" />
+      <workItem from="1569876754429" duration="1199000" />
+      <workItem from="1570116967391" duration="4185000" />
+      <workItem from="1570132954028" duration="5596000" />
+      <workItem from="1570224430181" duration="44000" />
+      <workItem from="1570224530785" duration="7253000" />
+      <workItem from="1570425765858" duration="29805000" />
+      <workItem from="1570545941132" duration="651000" />
+      <workItem from="1570620986037" duration="15991000" />
+      <workItem from="1570726372367" duration="2886000" />
+      <workItem from="1570739496274" duration="8212000" />
+      <workItem from="1570961802955" duration="9587000" />
+      <workItem from="1571059688140" duration="7244000" />
+      <workItem from="1571079344773" duration="4434000" />
+      <workItem from="1571144705399" duration="1222000" />
+      <workItem from="1571167693469" duration="4443000" />
     </task>
     <task id="LOCAL-00001" summary="Init repo">
       <created>1568063215457</created>
@@ -112,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568198138910</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Календарь&#10;Добавление, удаление атрибутов&#10;Добавление, удаление комнат">
+      <created>1571085426282</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1571085426282</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,9 +149,28 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Init repo" />
     <MESSAGE value="Перешёл на другой шаблон" />
     <MESSAGE value="Бек:&#10;Реализовал методы для получения, добавления комнат&#10;Фронт:&#10;Переделал меню (сделал иерархическим)&#10;Подключил calendar.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="Бек:&#10;Реализовал методы для получения, добавления комнат&#10;Фронт:&#10;Переделал меню (сделал иерархическим)&#10;Подключил calendar.js" />
+    <MESSAGE value="Календарь&#10;Добавление, удаление атрибутов&#10;Добавление, удаление комнат" />
+    <option name="LAST_COMMIT_MESSAGE" value="Календарь&#10;Добавление, удаление атрибутов&#10;Добавление, удаление комнат" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/scripts/start.js</url>
+          <line>102</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/ducks/faq.ts</url>
+          <line>1</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

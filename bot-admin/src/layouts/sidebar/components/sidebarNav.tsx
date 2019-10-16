@@ -82,11 +82,13 @@ const menu: SidebarPageBlock[] = [
         href: "/score"
       },
       {
-        title: "Переговорки",
+        title: "Бронирование",
         icon: MeetingRoomOutlined,
         href: "/booking",
         children: [
-          { title: "Расписание", href: "/booking/schedule" }
+          { title: "Расписание", href: "/booking/schedule" },
+          { title: "Комнаты", href: "/booking/rooms" },
+          { title: "Настройки", href: "/booking/settings" }
         ]
       }
     ]
