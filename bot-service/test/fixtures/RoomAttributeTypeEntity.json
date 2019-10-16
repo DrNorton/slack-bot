@@ -1,0 +1,12 @@
+[
+  {
+    "name": "attribute_type",
+    "defaultValue": "value1",
+    "teamId":"1"
+  },
+  {
+    "name": "attribute_type2",
+    "defaultValue": "value2",
+    "teamId":"1"
+  }
+]

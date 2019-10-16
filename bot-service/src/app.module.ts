@@ -13,6 +13,7 @@ import { RoomEntity } from './api-modules/booking/meetingRooms/rooms/entity/room
 import { RoomAttributeTypeEntity } from './api-modules/booking/meetingRooms/attributeTypes/entity/room.attributeType.entity';
 import { RoomAttributeEntity } from './api-modules/booking/meetingRooms/attributes/entity/roomAttribute.entity';
 import { ImageEntity } from './api-modules/image/entity/image.entity';
+import { AppointmentEntity } from './api-modules/booking/appointments/entity/appointment.entity';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ImageEntity } from './api-modules/image/entity/image.entity';
         RoomAttributeEntity,
         RoomAttributeTypeEntity,
         ImageEntity,
+        AppointmentEntity,
       ],
       synchronize: true,
       logging: true,

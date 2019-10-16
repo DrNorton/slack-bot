@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "team_name": "test11",
+    "access_token": "test1_access_token",
+    "bot_user_id":"bot_user_id_test_1",
+    "scope":"scope",
+    "bot_access_token":"bot_access_token_test_1"
+  },
+  {
+    "id": "2",
+    "team_name": "test22",
+    "access_token": "test2_access_token",
+    "bot_user_id":"bot_user_id_test_2",
+    "scope":"scope",
+    "bot_access_token":"bot_access_token_test_2"
+  }
+]

@@ -1,0 +1,24 @@
+stages:
+  - build
+
+bot-app-build:
+  stage: build
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE/bot-app:latest || true
+    - docker build -f bot-admin/docker/Dockerfile --cache-from $CI_REGISTRY_IMAGE/bot-app:latest --tag $CI_REGISTRY_IMAGE/bot-app:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/bot-app:latest ./bot-admin
+    - docker push $CI_REGISTRY_IMAGE/bot-app:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/bot-app:latest
+  tags:
+    - docker
+    
+bot-service-build:
+  stage: build
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE/bot-service:latest || true
+    - docker build -f bot-service/docker/Dockerfile --cache-from $CI_REGISTRY_IMAGE/bot-service:latest --tag $CI_REGISTRY_IMAGE/bot-service:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/bot-service:latest ./bot-service
+    - docker push $CI_REGISTRY_IMAGE/bot-service:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/bot-service:latest
+  tags:
+    - docker
