@@ -6,30 +6,23 @@ import { AppointmentEntity } from './entity/appointment.entity';
 import AppointmentDto from './dto/appointment.dto';
 
 @Injectable()
-export class AppointmentService
-  implements ICrudService<AppointmentDto> {
-  add(teamId: string, dto: AppointmentDto): Promise<AppointmentDto> {
-    return undefined;
-  }
-
-  deleteById(teamId: string, id: number): Promise<boolean> {
-    return undefined;
-  }
-
-  deleteItems(teamId: string, id: number[]): Promise<boolean> {
-    return undefined;
-  }
-
-  getAll(teamId: string): Promise<AppointmentDto[]> {
-    return undefined;
-  }
-
-  getById(teamId: string, id: number): Promise<AppointmentDto> {
-    return undefined;
-  }
+export class AppointmentService {
   constructor(
     @InjectRepository(AppointmentEntity)
-    private readonly roomAttributeTypesRepository: Repository<AppointmentEntity>,
-  ) {
+    private readonly appointmentRepository: Repository<AppointmentEntity>,
+  ) {}
+
+  public async createAppoinment(
+    teamId: string,
+    dto: AppointmentDto,
+  ): Promise<AppointmentDto> {
+    const newAppointment = AppointmentEntity.fromDto(teamId, dto);
+    const appointment = await this.appointmentRepository.save(newAppointment);
+    return appointment.toDto();
+  }
+
+  public async getAll(teamId: string): Promise<AppointmentDto[]> {
+    const appointments = await this.appointmentRepository.find();
+    return appointments.map(appointment => appointment.toDto());
   }
 }

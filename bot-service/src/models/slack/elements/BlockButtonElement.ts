@@ -3,8 +3,7 @@ import ConfirmDialogElement from './ConfirmDialogElement';
 import BlockText from '../BlockText';
 
 export default class BlockButtonElement extends BlockBaseElement {
-  text: BlockText;
-  action_id: string;
+  text: BlockText|string;
   url?: string;
   value?: string;
   style?: string;

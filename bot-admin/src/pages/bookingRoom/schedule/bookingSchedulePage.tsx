@@ -22,6 +22,15 @@ import "@fullcalendar/timegrid/main.css";
 import "@fullcalendar/list/main.css";
 import TitleContainerPage from "../../../components/common/titleContainerPage";
 import CalendarToolbar from "./components/calendarToolbar";
+import { ReduxState } from "../../../reduxx/reducer";
+import { connect } from "react-redux";
+import AppointmentDto from "../../../api/requests/booking/appointment.dto";
+import {
+  Appointment,
+  getAppointments,
+  getAppointmentsWithRoomsSelector
+} from "../../../ducks/booking/appointment";
+import { getRooms } from "../../../ducks/booking/rooms";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -87,15 +96,26 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   })
 );
+interface StatedProps {
+  appointments: Appointment[];
+  roomsExists: boolean;
+}
 
-const BookingSchedulePage = () => {
+interface DispatchedProps {
+  getAppointments: () => void;
+  getRooms: () => void;
+}
+
+interface Props extends StatedProps, DispatchedProps {}
+
+const BookingSchedulePage = (props: Props) => {
   const classes = useStyles();
   const calendarRef = useRef(null);
   const theme = useTheme();
   const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
   const [view, setView] = useState(mobileDevice ? "listWeek" : "dayGridMonth");
-  const [date, setDate] = useState(moment("2019-07-30 08:00:00").toDate());
-  const [events, setEvents] = useState([]);
+  const [date, setDate] = useState(moment().toDate());
+
   const [eventModal, setEventModal] = useState({
     open: false,
     event: null
@@ -104,7 +124,12 @@ const BookingSchedulePage = () => {
   useEffect(() => {
     let mounted = true;
 
-    const fetchEvents = () => {};
+    const fetchEvents = () => {
+      props.getAppointments();
+      if (!props.roomsExists) {
+        props.getRooms();
+      }
+    };
 
     fetchEvents();
 
@@ -170,28 +195,30 @@ const BookingSchedulePage = () => {
         />
         <Card className={classes.card}>
           <CardContent>
-            <FullCalendar
-              allDayMaintainDuration
-              defaultDate={date}
-              defaultView={view}
-              droppable
-              editable
-              eventResizableFromStart
-              events={events}
-              header={false}
-              height={800}
-              plugins={[
-                dayGridPlugin,
-                timeGridPlugin,
-                interactionPlugin,
-                listPlugin,
-                timelinePlugin
-              ]}
-              ref={calendarRef}
-              rerenderDelay={10}
-              selectable
-              weekends
-            />
+            {props.appointments.length > 0 && (
+              <FullCalendar
+                allDayMaintainDuration
+                defaultDate={date}
+                defaultView={view}
+                droppable
+                editable
+                eventResizableFromStart
+                events={props.appointments}
+                header={false}
+                height={800}
+                plugins={[
+                  dayGridPlugin,
+                  timeGridPlugin,
+                  interactionPlugin,
+                  listPlugin,
+                  timelinePlugin
+                ]}
+                ref={calendarRef}
+                rerenderDelay={10}
+                selectable
+                weekends
+              />
+            )}
           </CardContent>
         </Card>
       </div>
@@ -199,4 +226,15 @@ const BookingSchedulePage = () => {
   );
 };
 
-export default BookingSchedulePage;
+const mapStateToProps = (state: ReduxState): StatedProps => ({
+  appointments: getAppointmentsWithRoomsSelector(state),
+  roomsExists: state.rooms.get("rooms").count() !== 0
+});
+
+export default connect<StatedProps, DispatchedProps, void, ReduxState>(
+  mapStateToProps,
+  {
+    getAppointments: getAppointments.started,
+    getRooms: getRooms.started
+  }
+)(BookingSchedulePage);
