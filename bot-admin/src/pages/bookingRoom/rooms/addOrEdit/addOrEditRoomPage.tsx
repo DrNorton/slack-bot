@@ -125,6 +125,7 @@ class AddOrEditRoomPage extends React.Component<Props, State> {
       return {
         id: -1,
         name: "",
+        color: "#000000",
         attributes: props.attributeTypes.map(type => ({
           value: type.defaultValue,
           attributeType: type
@@ -133,6 +134,8 @@ class AddOrEditRoomPage extends React.Component<Props, State> {
     }
   };
 }
+
+
 
 const mapStateToProps = (state: ReduxState, ownProps: any): StatedProps => ({
   attributeTypes: getAttributeTypesSelector(state),

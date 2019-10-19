@@ -28,6 +28,9 @@ export class RoomEntity {
   @ManyToOne(type => TeamEntity, team => team.rooms)
   team: TeamEntity;
 
+  @Column({ default: '#00D084' })
+  color: string;
+
   @OneToMany(type => RoomAttributeEntity, roomAttribute => roomAttribute.room, {
     cascade: true,
     onDelete: 'CASCADE',
@@ -42,10 +45,10 @@ export class RoomEntity {
     dto.id = this.id;
     dto.image = this.image;
     dto.name = this.name;
+    dto.color = this.color;
     if (this.attributes) {
       dto.attributes = this.attributes.map(x => x.toDto());
     }
-
     return dto;
   }
 }

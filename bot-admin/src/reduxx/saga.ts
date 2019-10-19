@@ -4,6 +4,7 @@ import { saga as imageSaga } from "../ducks/image";
 import { saga as authSaga } from "../ducks/auth";
 import { saga as scoreSaga } from "../ducks/score";
 import { saga as roomsSaga } from "../ducks/booking/rooms";
+import { saga as appointmentSaga } from "../ducks/booking/appointment";
 
 export default function*() {
   yield all([
@@ -12,6 +13,7 @@ export default function*() {
     authSaga(),
     scoreSaga(),
     roomsSaga(),
-    imageSaga()
+    imageSaga(),
+    appointmentSaga()
   ]);
 }

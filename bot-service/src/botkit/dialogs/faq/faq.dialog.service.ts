@@ -42,7 +42,7 @@ export default class FaqDialogService {
       type: BlockTextTypes.Markdown,
     };
     return titleSection;
-  }
+  };
 
   private createQuestionSection = (dto: FaqItemDto): BlockSection => {
     const questionSection = new BlockSection();
@@ -53,9 +53,9 @@ export default class FaqDialogService {
     questionSection.text.type = BlockTextTypes.Markdown;
     questionSection.block_id = dto.id.toString();
     return questionSection;
-  }
+  };
 
   private createDivider = (): BlockDivider => {
     return new BlockDivider();
-  }
+  };
 }

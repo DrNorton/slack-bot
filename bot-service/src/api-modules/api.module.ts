@@ -8,6 +8,7 @@ import { MembersModule } from './members/members.module';
 import { EmojiModule } from './emoji/emoji.module';
 import { ScoreModule } from './score/score.module';
 import { MeetingRoomsModule } from './booking/meetingRooms/meetingRooms.module';
+import { BookingModule } from './booking/booking.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { MeetingRoomsModule } from './booking/meetingRooms/meetingRooms.module';
     MembersModule,
     EmojiModule,
     ScoreModule,
-    MeetingRoomsModule,
+    BookingModule,
   ],
 })
 export class ApiModule {}

@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  Injectable,
   Param, Post,
   Put,
   UseGuards,
@@ -14,8 +13,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiOperation, ApiUseTags } from '@nestjs/swagger';
 import { User } from '../../decorators/user.decorator';
 import InstalledUserDto from '../install/dto/installedUser.dto';
-import { FaqItemDto } from '../faq/dto/faqItem.dto';
-import BaseApiResponse from '../base/base.api.response';
 import EmojiDto from './dto/emoji.dto';
 
 @ApiBearerAuth()
