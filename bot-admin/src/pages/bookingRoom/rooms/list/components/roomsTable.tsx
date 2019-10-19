@@ -20,6 +20,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { Edit } from "@material-ui/icons";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Skeleton } from "@material-ui/lab";
+import ColorView from "../../addOrEdit/components/colorViewer";
 
 interface Props extends RouteComponentProps {
   attributeTypes: RoomAttributeTypeDto[];
@@ -113,7 +114,9 @@ function RoomsTable(props: Props) {
                         onChange={handleSelectAll}
                       />
                     </TableCell>
+                    <TableCell padding="checkbox">Цвет</TableCell>
                     <TableCell>Название</TableCell>
+
                     {props.attributeTypes.map(type => (
                       <TableCell>{type.name}</TableCell>
                     ))}
@@ -141,6 +144,9 @@ function RoomsTable(props: Props) {
                               value={selectedRooms.indexOf(room.id) !== -1}
                             />
                           </TableCell>
+                          <TableCell padding="checkbox">
+                            <ColorView color={room.color} />
+                          </TableCell>
                           <TableCell>
                             <div className={classes.nameCell}>
                               <Avatar
@@ -150,6 +156,8 @@ function RoomsTable(props: Props) {
                               {room.name}
                             </div>
                           </TableCell>
+
+
                           {room.attributes.map(attribute => (
                             <TableCell>
                               {attribute.value ? attribute.value : "-"}
@@ -171,10 +179,7 @@ function RoomsTable(props: Props) {
           </PerfectScrollbar>
         </CardContent>
       </Card>
-      <TableEditBar
-        onDelete={onDelete}
-        selected={selectedRooms}
-      />
+      <TableEditBar onDelete={onDelete} selected={selectedRooms} />
     </div>
   );
 }

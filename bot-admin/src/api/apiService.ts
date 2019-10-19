@@ -7,6 +7,7 @@ import TopItemDto from "./requests/topItemDto";
 import { WinnerPeriod } from "./requests/winnerPeriod";
 import RoomDto from "./requests/booking/room.dto";
 import { RoomAttributeTypeDto } from "./requests/booking/roomAttribute.dto";
+import AppointmentDto from "./requests/booking/appointment.dto";
 
 export interface BaseApiResponse<T> {
   errorCode: number;
@@ -169,6 +170,12 @@ export default class ApiService {
     return result;
   }
 
+  public async getAppointments(): Promise<AppointmentDto[]> {
+    const url = `${apiUrls.appointment}`;
+    const result = await this.getRequest<AppointmentDto[]>(url);
+    return result;
+  }
+
   private async getRequest<R>(
     url: string,
     options?: RequestOptions
@@ -258,5 +265,6 @@ const apiUrls = {
   emoji: "/api/emoji",
   room: "/api/room",
   score: "/api/score",
-  attributeTypes: "/api/attributetypes"
+  attributeTypes: "/api/attributetypes",
+  appointment:"/api/appointment"
 };

@@ -8,6 +8,7 @@ import ImagePicker from "./imagePicker";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import RoomDto from "../../../../../api/requests/booking/room.dto";
+import ColorPicker from "./colorPicker";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +30,6 @@ interface Props extends FormikProps<RoomDto> {}
 export default function RoomForm(props: Props) {
   const classes = useStyles();
   const { values } = props;
-
   return (
     <Paper className={classes.mainPaper}>
       <Form>
@@ -49,6 +49,10 @@ export default function RoomForm(props: Props) {
                 label="Name"
                 fullWidth
                 component={TextField}
+              />
+              <ColorPicker
+                color={props.values["color"]}
+                onColorChange={hex => props.setFieldValue("color", hex)}
               />
             </Grid>
           </Grid>

@@ -5,8 +5,10 @@ export default class ImageElement extends BlockBaseElement {
   image_url: string;
   alt_text: string;
 
-  constructor() {
+  constructor(image_url?: string, alt_text?: string) {
     super();
     this.type = 'image';
+    this.image_url = image_url;
+    this.alt_text = alt_text;
   }
 }

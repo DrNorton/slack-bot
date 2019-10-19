@@ -8,6 +8,10 @@ import { Record } from "immutable";
 import { AuthModel, authReducer } from "../ducks/auth";
 import { ScoreModel, scoreReducer } from "../ducks/score";
 import { roomsReducer, RoomsModel } from "../ducks/booking/rooms";
+import {
+  AppointmentModel,
+  appointmentReducer
+} from "../ducks/booking/appointment";
 
 export interface ReduxState {
   faq: Record<FaqModel>;
@@ -15,6 +19,7 @@ export interface ReduxState {
   error: ApiError;
   auth: Record<AuthModel>;
   score: Record<ScoreModel>;
+  appointments: Record<AppointmentModel>;
   rooms: Record<RoomsModel>;
 }
 
@@ -26,5 +31,6 @@ export default (history: any) =>
     error: errorsReducer,
     auth: authReducer,
     score: scoreReducer,
+    appointments: appointmentReducer,
     rooms: roomsReducer
   });
