@@ -1,6 +1,6 @@
-import MemberDto from "./member.dto";
+import { IMemberDto } from './member.dto';
 
-export default interface TopItemDto {
-    winner: MemberDto;
+export interface ITopItemDto {
+    winner: IMemberDto;
     score: number;
 }

@@ -1,5 +1,4 @@
-
-export default interface MemberDto {
+export interface IMemberDto {
     id: string;
     name: string;
     realName: string;

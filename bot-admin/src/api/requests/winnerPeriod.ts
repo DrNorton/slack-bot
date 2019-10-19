@@ -1,5 +1,5 @@
-export enum WinnerPeriod {
-    Week = "week",
-    Month = "month",
-    Year = "year"
+export enum EWinnerPeriod {
+    Week = 'week',
+    Month = 'month',
+    Year = 'year',
 }

@@ -1,8 +1,8 @@
-import RoomAttributeDto from "./roomAttribute.dto";
+import { IRoomAttributeDto } from './roomAttribute.dto';
 
-export default interface RoomDto {
+export interface IRoomDto {
     id: number;
     image?: string;
     name?: string;
-    attributes:RoomAttributeDto[];
+    attributes: IRoomAttributeDto[];
 }

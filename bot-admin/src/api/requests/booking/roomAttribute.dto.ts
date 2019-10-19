@@ -1,11 +1,11 @@
-export default interface RoomAttributeDto {
-  id?: number;
-  attributeType: RoomAttributeTypeDto;
-  value: string;
+export interface IRoomAttributeDto {
+    id?: number;
+    attributeType: IRoomAttributeTypeDto;
+    value: string;
 }
 
-export interface RoomAttributeTypeDto {
-  id: number;
-  name: string;
-  defaultValue: string;
+export interface IRoomAttributeTypeDto {
+    id: number;
+    name: string;
+    defaultValue: string;
 }

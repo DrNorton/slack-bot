@@ -1,8 +1,8 @@
 import palette from '../palette';
 
 export default {
-  root: {
-    color: palette.icon,
-    minWidth: 32
-  }
+    root: {
+        color: palette.icon,
+        minWidth: 32,
+    },
 };

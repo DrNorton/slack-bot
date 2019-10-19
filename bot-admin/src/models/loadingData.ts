@@ -1,5 +1,5 @@
-export interface LoadingData<T> {
+export interface ILoadingData<T> {
     isFetching: boolean;
-    isError:boolean;
+    isError: boolean;
     data?: T;
 }

@@ -1,10 +1,10 @@
 export interface IRoomModel {
-  name: string;
-  attributes: Attribute[];
+    name: string;
+    attributes: IAttribute[];
 }
 
-export interface Attribute {
-  name: string;
-  value: string;
-  defaultValue: string;
+export interface IAttribute {
+    name: string;
+    value: string;
+    defaultValue: string;
 }

@@ -1,30 +1,31 @@
-import { combineReducers } from "redux";
-import { ApiError } from "../models/apiError";
-import { errorsReducer } from "./errorReducer";
-import { connectRouter } from "connected-react-router";
-import { ImageModel, imageReducer } from "../ducks/image";
-import { FaqModel, faqReducer } from "../ducks/faq";
-import { Record } from "immutable";
-import { AuthModel, authReducer } from "../ducks/auth";
-import { ScoreModel, scoreReducer } from "../ducks/score";
-import { roomsReducer, RoomsModel } from "../ducks/booking/rooms";
+import { connectRouter } from 'connected-react-router';
+import { Record } from 'immutable';
+import { combineReducers } from 'redux';
 
-export interface ReduxState {
-  faq: Record<FaqModel>;
-  image: Record<ImageModel>;
-  error: ApiError;
-  auth: Record<AuthModel>;
-  score: Record<ScoreModel>;
-  rooms: Record<RoomsModel>;
+import { authReducer, IAuthModel } from '../ducks/auth';
+import { IRoomsModel, roomsReducer } from '../ducks/booking/rooms';
+import { faqReducer, IFaqModel } from '../ducks/faq';
+import { IImageModel, imageReducer } from '../ducks/image';
+import { IScoreModel, scoreReducer } from '../ducks/score';
+import { ApiError } from '../models/apiError';
+import { errorsReducer } from './errorReducer';
+
+export interface IReduxState {
+    faq: Record<IFaqModel>;
+    image: Record<IImageModel>;
+    error: ApiError;
+    auth: Record<IAuthModel>;
+    score: Record<IScoreModel>;
+    rooms: Record<IRoomsModel>;
 }
 
 export default (history: any) =>
-  combineReducers({
-    router: connectRouter(history),
-    image: imageReducer,
-    faq: faqReducer,
-    error: errorsReducer,
-    auth: authReducer,
-    score: scoreReducer,
-    rooms: roomsReducer
-  });
+    combineReducers({
+        router: connectRouter(history),
+        image: imageReducer,
+        faq: faqReducer,
+        error: errorsReducer,
+        auth: authReducer,
+        score: scoreReducer,
+        rooms: roomsReducer,
+    });

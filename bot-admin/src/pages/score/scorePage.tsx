@@ -1,189 +1,144 @@
-import * as React from "react";
-import fabButtonStyles, { FabButtonStylesKey } from "../../variables/styles";
-import {
-  Avatar,
-  Divider,
-  Fab,
-  MenuItem,
-  Select,
-  StyleRulesCallback,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Theme,
-  Typography,
-  WithStyles,
-  withStyles
-} from "@material-ui/core";
-import { RouteComponentProps } from "react-router";
-import { SettingsApplications } from "@material-ui/icons";
-import { connect } from "react-redux";
-import { getWinnersByPeriod, WinnersStorage } from "../../ducks/score";
-import { ReduxState } from "../../reduxx/reducer";
-import TopItemDto from "../../api/requests/topItemDto";
-import combineStyles from "../../utils/utils";
-import Paper from "@material-ui/core/Paper";
-import WinnerAvatar from "./components/winnerAvatar";
-import clsx from "clsx";
-import { WinnerPeriod } from "../../api/requests/winnerPeriod";
-import WinnerPanel from "./components/winnerPanel";
+import { Fab, MenuItem, Select, StyleRulesCallback, Table, TableBody, TableCell, TableRow, Theme, WithStyles, withStyles } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import { SettingsApplications } from '@material-ui/icons';
+import clsx from 'clsx';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 
-type ScorePageClassKey =
-  | "scoreTop"
-  | "select"
-  | "disabledRow"
-  | "avatarWithScoreTop"
-  | "winnerSpace";
+import { ITopItemDto } from '../../api/requests/topItemDto';
+import { EWinnerPeriod } from '../../api/requests/winnerPeriod';
+import { getWinnersByPeriod, WinnersStorage } from '../../ducks/score';
+import { IReduxState } from '../../reduxx/reducer';
+import combineStyles from '../../utils/utils';
+import fabButtonStyles, { FabButtonStylesKey } from '../../variables/styles';
+import WinnerAvatar from './components/winnerAvatar';
+import WinnerPanel from './components/winnerPanel';
 
-const ScorePageStyles: StyleRulesCallback<Theme, {}, ScorePageClassKey> = (
-  theme: Theme
-) => ({
+type ScorePageClassKey = 'scoreTop' | 'select' | 'disabledRow' | 'avatarWithScoreTop' | 'winnerSpace';
 
-  avatarWithScoreTop: {
-    display: "flex",
-    flexDirection: "row"
-  },
-  scoreTop: {
-    flex: 1,
-    marginTop: 0,
-    marginRight: "5px",
-    padding: "10px"
-  },
+const ScorePageStyles: StyleRulesCallback<Theme, {}, ScorePageClassKey> = (theme: Theme) => ({
+    avatarWithScoreTop: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    scoreTop: {
+        flex: 1,
+        marginTop: 0,
+        marginRight: '5px',
+        padding: '10px',
+    },
 
-  select: {
-    marginBottom: "15px"
-  },
-  disabledRow: {
-    opacity: 0.4
-  },
-  winnerSpace: {
-    display: "flex",
-    flexDirection: "row"
-  }
+    select: {
+        marginBottom: '15px',
+    },
+    disabledRow: {
+        opacity: 0.4,
+    },
+    winnerSpace: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
 });
 
-interface StatedProps {
-  winners: WinnersStorage;
+interface IStatedProps {
+    winners: WinnersStorage;
 }
 
-interface DispatchedProps {
-  getWinnersByPeriod: (period: WinnerPeriod) => void;
+interface IDispatchedProps {
+    getWinnersByPeriod: (period: EWinnerPeriod) => void;
 }
 
-interface State {
-  selectedPeriod: WinnerPeriod;
+interface IState {
+    selectedPeriod: EWinnerPeriod;
 }
 
-interface Props extends RouteComponentProps, StatedProps, DispatchedProps {}
+interface IProps extends RouteComponentProps, IStatedProps, IDispatchedProps {}
 
-class ScorePage extends React.Component<
-  Props & WithStyles<FabButtonStylesKey> & WithStyles<ScorePageClassKey>,
-  State
-> {
-  constructor(
-    props: Props &
-      WithStyles<FabButtonStylesKey> &
-      WithStyles<ScorePageClassKey>
-  ) {
-    super(props);
-    this.state = { selectedPeriod: WinnerPeriod.Week };
-  }
-
-  public componentDidMount(): void {
-    this.props.getWinnersByPeriod(this.state.selectedPeriod);
-  }
-
-  public render() {
-    const { classes } = this.props;
-    const firstWinner = this.getFirstWinner();
-    return (
-      <div>
-        <div className={classes.winnerSpace}>
-          <WinnerPanel winner={firstWinner} />
-          <Paper className={classes.scoreTop}>
-            <Select
-              className={classes.select}
-              onChange={e => this.loadWinnersForPeriod(e)}
-              value={this.state.selectedPeriod}
-            >
-              <MenuItem value={WinnerPeriod.Week}>Неделя</MenuItem>
-              <MenuItem value={WinnerPeriod.Month}>Месяц</MenuItem>
-              <MenuItem value={WinnerPeriod.Year}>Год</MenuItem>
-            </Select>
-            <Table>
-              <TableBody>
-                {this.props.winners[this.state.selectedPeriod].map(
-                  (item, index) => (
-                    <TableRow
-                      className={clsx({
-                        [classes.disabledRow]: index > 5 //only when open === true
-                      })}
-                      key={item.winner.id}
-                    >
-                      <TableCell padding="checkbox">{index + 1}</TableCell>
-                      <TableCell padding="checkbox" align="center">
-                        <WinnerAvatar
-                          score={item}
-                          className={classes.avatarWithScoreTop}
-                        />
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {item.winner.realName}
-                      </TableCell>
-                      <TableCell padding="checkbox" align="right">
-                        {item.score}
-                      </TableCell>
-                    </TableRow>
-                  )
-                )}
-              </TableBody>
-            </Table>
-          </Paper>
-        </div>
-        <div style={{ position: "fixed" }}>
-          <Fab
-            variant="extended"
-            onClick={this.goToSettings}
-            className={classes.fab}
-          >
-            <SettingsApplications />
-            Настройки
-          </Fab>
-        </div>
-      </div>
-    );
-  }
-
-  private goToSettings = () => {
-    this.props.history.push(`/score/settings`);
-  };
-
-  private loadWinnersForPeriod = (
-    event: React.ChangeEvent<{ name?: string; value: unknown }>
-  ) => {
-    const period = event.target.value as WinnerPeriod;
-    this.setState({ selectedPeriod: period });
-    this.props.getWinnersByPeriod(period);
-  };
-
-  private getFirstWinner(): TopItemDto|undefined
-  {
-    if (this.props.winners[this.state.selectedPeriod].length > 0) {
-      return this.props.winners[this.state.selectedPeriod][0];
-    } else {
-      return undefined;
+class ScorePage extends React.Component<IProps & WithStyles<FabButtonStylesKey> & WithStyles<ScorePageClassKey>, IState> {
+    constructor (props: IProps & WithStyles<FabButtonStylesKey> & WithStyles<ScorePageClassKey>) {
+        super(props);
+        this.state = { selectedPeriod: EWinnerPeriod.Week };
     }
-  }
+
+    public componentDidMount (): void {
+        this.props.getWinnersByPeriod(this.state.selectedPeriod);
+    }
+
+    public render (): JSX.Element {
+        const { classes } = this.props;
+        const firstWinner = this.getFirstWinner();
+        return (
+            <div>
+                <div className={classes.winnerSpace}>
+                    <WinnerPanel winner={firstWinner} />
+                    <Paper className={classes.scoreTop}>
+                        <Select className={classes.select} onChange={e => this.loadWinnersForPeriod(e)} value={this.state.selectedPeriod}>
+                            <MenuItem value={EWinnerPeriod.Week}>Неделя</MenuItem>
+                            <MenuItem value={EWinnerPeriod.Month}>Месяц</MenuItem>
+                            <MenuItem value={EWinnerPeriod.Year}>Год</MenuItem>
+                        </Select>
+                        <Table>
+                            <TableBody>
+                                {this.props.winners[this.state.selectedPeriod].map((item, index) => (
+                                    <TableRow
+                                        className={clsx({
+                                            [classes.disabledRow]: index > 5, // only when open === true
+                                        })}
+                                        key={item.winner.id}
+                                    >
+                                        <TableCell padding="checkbox">{index + 1}</TableCell>
+                                        <TableCell padding="checkbox" align="center">
+                                            <WinnerAvatar score={item} className={classes.avatarWithScoreTop} />
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {item.winner.realName}
+                                        </TableCell>
+                                        <TableCell padding="checkbox" align="right">
+                                            {item.score}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </div>
+                <div style={{ position: 'fixed' }}>
+                    <Fab variant="extended" onClick={this.goToSettings} className={classes.fab}>
+                        <SettingsApplications />
+                        Настройки
+                    </Fab>
+                </div>
+            </div>
+        );
+    }
+
+    private goToSettings = () => {
+        this.props.history.push('/score/settings');
+    };
+
+    private loadWinnersForPeriod = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+        const period = event.target.value as EWinnerPeriod;
+        this.setState({ selectedPeriod: period });
+        this.props.getWinnersByPeriod(period);
+    };
+
+    private getFirstWinner (): ITopItemDto | undefined {
+        if (this.props.winners[this.state.selectedPeriod].length > 0) {
+            return this.props.winners[this.state.selectedPeriod][0];
+        } else {
+            return undefined;
+        }
+    }
 }
 
-const mapStateToProps = (state: ReduxState, ownProps: any): StatedProps => ({
-  winners: state.score.get("winners").toJS()
+const mapStateToProps = (state: IReduxState, ownProps: any): IStatedProps => ({
+    winners: state.score.get('winners').toJS(),
 });
 
 const combinedStyles: any = combineStyles(fabButtonStyles, ScorePageStyles);
 
-export default connect<StatedProps, DispatchedProps, any, any>(
-  mapStateToProps,
-  { getWinnersByPeriod: getWinnersByPeriod.started }
+export default connect<IStatedProps, IDispatchedProps, any, any>(
+    mapStateToProps,
+    { getWinnersByPeriod: getWinnersByPeriod.started },
 )(withStyles(combinedStyles)(ScorePage));
