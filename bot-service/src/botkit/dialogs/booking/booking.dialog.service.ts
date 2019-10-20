@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import BaseBlock from '../../../models/slack/BaseBlock';
 import { RoomsService } from '../../../api-modules/booking/meetingRooms/rooms/rooms.service';
-import RoomDto from '../../../api-modules/booking/meetingRooms/rooms/dto/room.dto';
 import BlockTextTypes from '../../../models/slack/BlockTextTypes';
 import BlockText from '../../../models/slack/BlockText';
 import BlockSection from '../../../models/slack/BlockSection';
@@ -10,6 +9,8 @@ import ImageElement from '../../../models/slack/elements/ImageElement';
 import BlockAction from '../../../models/slack/BlockAction';
 import BlockButtonElement from '../../../models/slack/elements/BlockButtonElement';
 import BlockDatePicker from '../../../models/slack/elements/BlockDatePicker';
+import BlockInput from '../../../models/slack/BlockInput';
+import StaticSelect from '../../../models/slack/elements/StaticSelect';
 
 @Injectable()
 export default class BookingDialogService {
@@ -41,7 +42,7 @@ export default class BookingDialogService {
       blocks.push(divider);
     });
 
-    return { blocks };
+    return blocks;
   }
 
   private createRoomSection(room) {
@@ -62,22 +63,42 @@ export default class BookingDialogService {
     return roomSection;
   }
 
-  public async getTimePicker(teamId: string, roomId: number) {
+  public async getDatePicker(teamId: string, roomId: number) {
     const room = await this.roomService.getById(teamId, roomId);
     const blocks: BaseBlock[] = [];
-    const blockSection = new BlockSection();
-    blockSection.text = new BlockText();
-    blockSection.text.text = '\n\n *Выберите время:*';
-    blockSection.text.type = BlockTextTypes.Markdown;
-    blockSection.accessory = new BlockDatePicker(
+
+    blocks.push(this.createRoomSection(room));
+    const datePicker = new BlockInput();
+    datePicker.label = new BlockText();
+    datePicker.label.text = 'Выберите дату:';
+    datePicker.label.type = BlockTextTypes.PlainText;
+    datePicker.element = new BlockDatePicker(
       '2019-10-18',
       new BlockText(BlockTextTypes.PlainText, 'Выберите дату'),
     );
-    blockSection.accessory.action_id = 'picked_date';
-    blocks.push(this.createRoomSection(room));
-    blocks.push(blockSection);
+    blocks.push(datePicker);
+
+    const timeSelect = new BlockInput();
+    timeSelect.label = new BlockText(
+      BlockTextTypes.PlainText,
+      'Выберите время:',
+      true,
+    );
+    const select = new StaticSelect();
+    select.placeholder = new BlockText(BlockTextTypes.PlainText, 'Время', true);
+    select.options.push({
+      text: new BlockText(BlockTextTypes.PlainText, '15 минут'),
+      value: '15',
+    });
+    select.options.push({
+      text: new BlockText(BlockTextTypes.PlainText, '30 минут'),
+      value: '30',
+    });
+    timeSelect.element = select;
+    blocks.push(timeSelect);
+
     const divider = new BlockDivider();
     blocks.push(divider);
-    return { blocks };
+    return blocks;
   }
 }

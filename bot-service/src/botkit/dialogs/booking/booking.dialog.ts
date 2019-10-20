@@ -14,26 +14,66 @@ export default class BookingDialog {
     const controller = this.connector.get();
     controller.on('slash_command', async (bot, message) => {
       if (message.command === '/booking') {
-        const dialog = await this.bookingDialogService.getRoomsDialog(
+        const blocks = await this.bookingDialogService.getRoomsDialog(
           message.team_id,
         );
-        console.log(JSON.stringify(dialog));
-        (bot as SlackBotWorker).reply(message, dialog);
+        const trigger_id = message.trigger_id;
+        const response = await (bot as SlackBotWorker).api.views.open({
+          trigger_id,
+          view: {
+            type: 'modal',
+            callback_id: 'modal-identifier',
+            submit: {
+              type: 'plain_text',
+              text: 'Submit',
+              emoji: true,
+            },
+            close: {
+              type: 'plain_text',
+              text: 'Cancel',
+              emoji: true,
+            },
+            title: {
+              type: 'plain_text',
+              text: 'Just a modal',
+            },
+            blocks,
+          },
+        });
       }
     });
     controller.on('block_actions', async (bot, message) => {
       const action = message.incoming_message.channelData.actions[0];
-      let dialog;
       switch (action.action_id) {
         case 'picked_room':
-          dialog = await this.bookingDialogService.getTimePicker(
+          const blocks = await this.bookingDialogService.getDatePicker(
             message.team.id,
             parseInt(action.value, 10),
           );
-          (bot as SlackBotWorker).replyInteractive(message, dialog);
-          break;
-
-        case 'picked_date':
+          console.log(JSON.stringify(blocks));
+          const trigger_id = message.trigger_id;
+          const response = await (bot as SlackBotWorker).api.views.update({
+            view_id: message.container.view_id,
+            view: {
+              type: 'modal',
+              submit: {
+                type: 'plain_text',
+                text: 'Submit',
+                emoji: true,
+              },
+              close: {
+                type: 'plain_text',
+                text: 'Cancel',
+                emoji: true,
+              },
+              callback_id: 'modal-identifier',
+              title: {
+                type: 'plain_text',
+                text: 'Just a modal',
+              },
+              blocks,
+            },
+          });
           break;
       }
     });
