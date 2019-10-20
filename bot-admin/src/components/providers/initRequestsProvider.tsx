@@ -1,42 +1,43 @@
-import { ReduxState } from "../../reduxx/reducer";
-import { connect } from "react-redux";
-import React from "react";
-import { isAuth, getProfile } from "../../ducks/auth";
-import { UserDto } from "../../api/requests/user.dto";
+import React, { ReactNode } from 'react';
+import { connect } from 'react-redux';
 
-interface Props extends StatedProps, DispatchedProps {
-  children: React.ReactNode;
+import { IUserDto } from '../../api/requests/user.dto';
+import { getProfile, isAuth } from '../../ducks/auth';
+import { IReduxState } from '../../reduxx/reducer';
+
+interface IProps extends IStatedProps, IDispatchedProps {
+    children: React.ReactNode;
 }
 
-interface DispatchedProps {
-  getUserProfile: () => void;
+interface IDispatchedProps {
+    getUserProfile: () => void;
 }
 
-interface StatedProps {
-  isAuth: boolean;
-  profile: UserDto;
+interface IStatedProps {
+    isAuth: boolean;
+    profile: IUserDto;
 }
 
-class InitRequestsProvider extends React.Component<Props> {
-  public componentDidMount(): void {
-    if (this.props.isAuth && !this.props.profile) {
-      this.props.getUserProfile();
+class InitRequestsProvider extends React.Component<IProps> {
+    public componentDidMount (): void {
+        if (this.props.isAuth && !this.props.profile) {
+            this.props.getUserProfile();
+        }
     }
-  }
 
-  public render() {
-    return this.props.children;
-  }
+    public render (): ReactNode {
+        return this.props.children;
+    }
 }
 
-const mapStateToProps = (state: ReduxState, ownProps: any): StatedProps => ({
-  isAuth: isAuth(state),
-  profile: state.auth.getIn(["userProfile", "data"]) as UserDto
+const mapStateToProps = (state: IReduxState): IStatedProps => ({
+    isAuth: isAuth(state),
+    profile: state.auth.getIn(['userProfile', 'data']) as IUserDto,
 });
 
 export default connect(
-  mapStateToProps,
-  {
-    getUserProfile: getProfile.started
-  }
+    mapStateToProps,
+    {
+        getUserProfile: getProfile.started,
+    },
 )(InitRequestsProvider);

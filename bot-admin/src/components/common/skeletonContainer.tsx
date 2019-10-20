@@ -1,18 +1,17 @@
-import * as React from "react";
+import * as React from 'react';
 
-interface Props {
-  isLoading: boolean;
-  children: React.ReactNode;
-  skeleton: React.ReactNode;
+interface IProps {
+    isLoading: boolean;
+    children: React.ReactNode;
+    skeleton: React.ReactNode;
 }
 
-const SkeletonComponent: React.FunctionComponent<Props> = (props: Props) => {
-  if (props.isLoading) {
-    return (<>props.skeleton</>);
-  } else {
-    return (<>props.children</>);
-  }
+const SkeletonComponent: React.FunctionComponent<IProps> = (props: IProps) => {
+    if (props.isLoading) {
+        return <>props.skeleton</>;
+    } else {
+        return <>props.children</>;
+    }
 };
-
 
 export default SkeletonComponent;

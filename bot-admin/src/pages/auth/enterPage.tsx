@@ -1,65 +1,57 @@
-import { RouteComponentProps, withRouter } from "react-router";
-import * as React from "react";
-import { ReduxState } from "../../reduxx/reducer";
-import { connect } from "react-redux";
-import { checkTokenAndGetProfile, CheckTokenPayload } from "../../ducks/auth";
-import {UserDto} from "../../api/requests/user.dto";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { IUserDto } from '../../api/requests/user.dto';
+import { checkTokenAndGetProfile, ICheckTokenPayload } from '../../ducks/auth';
+import { IReduxState } from '../../reduxx/reducer';
 
-interface InputPropsLocation {
-  token: string;
+interface IInputPropsLocation {
+    token: string;
 }
 
-interface State {
-  token: string;
+interface IState {
+    token: string;
 }
 
-interface StatedProps {
-  tokenCheckFetching: boolean;
-  userProfile: UserDto;
+interface IStatedProps {
+    tokenCheckFetching: boolean;
+    userProfile: IUserDto;
 }
 
-interface DispatchedProps {
-  getUserProfile: (payload: CheckTokenPayload) => void;
+interface IDispatchedProps {
+    getUserProfile: (payload: ICheckTokenPayload) => void;
 }
 
-interface Props
-  extends StatedProps,
-    DispatchedProps,
-    RouteComponentProps<InputPropsLocation> {}
+interface IProps extends IStatedProps, IDispatchedProps, RouteComponentProps<IInputPropsLocation> {}
 
-class EnterPage extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    const token = this.props.match.params.token;
-    this.state = { token };
-  }
-
-  public componentDidMount(): void {
-    this.props.getUserProfile({ token: this.state.token });
-  }
-
-  public render() {
-    if(this.props.userProfile){
-      return <div>{this.props.userProfile.realName}</div>;
-    }
-    else{
-      return <div>{"TEST"}</div>;
+class EnterPage extends React.Component<IProps, IState> {
+    constructor (props: IProps) {
+        super(props);
+        const token = this.props.match.params.token;
+        this.state = { token };
     }
 
-  }
+    public componentDidMount (): void {
+        this.props.getUserProfile({ token: this.state.token });
+    }
+
+    public render (): JSX.Element {
+        if (this.props.userProfile) {
+            return <div>{this.props.userProfile.realName}</div>;
+        } else {
+            return <div>{'TEST'}</div>;
+        }
+    }
 }
 
-const mapStateToProps = (state: ReduxState, ownProps: any): StatedProps => ({
-  userProfile: state.auth.getIn(["userProfile", "data"]) as UserDto,
-  tokenCheckFetching: state.auth.getIn([
-    "userProfile",
-    "isFetching"
-  ]) as boolean
+const mapStateToProps = (state: IReduxState, ownProps: any): IStatedProps => ({
+    userProfile: state.auth.getIn(['userProfile', 'data']) as IUserDto,
+    tokenCheckFetching: state.auth.getIn(['userProfile', 'isFetching']) as boolean,
 });
 
 export default connect(
-  mapStateToProps,
-  {
-    getUserProfile: checkTokenAndGetProfile.started
-  }
+    mapStateToProps,
+    {
+        getUserProfile: checkTokenAndGetProfile.started,
+    },
 )(withRouter(EnterPage));

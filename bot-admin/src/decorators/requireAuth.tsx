@@ -1,43 +1,31 @@
-import React from "react";
-import { connect } from "react-redux";
-import { ReduxState } from "../reduxx/reducer";
-import { RouteComponentProps, withRouter } from "react-router-dom";
-import { isAuth } from "../ducks/auth";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
-interface StatedProps {
-  isAuth: boolean;
+import { isAuth } from '../ducks/auth';
+import { IReduxState } from '../reduxx/reducer';
+
+interface IStatedProps {
+    isAuth: boolean;
 }
 
-interface Props extends StatedProps, RouteComponentProps {}
+interface IProps extends IStatedProps, RouteComponentProps {}
 
-const requireAuth = <P extends object>(ComposedComponent: React.ComponentType<P>) => {
-  class RequireAuth extends React.Component<Props> {
-    componentDidMount() {
-      this._checkAndRedirect();
-    }
+export const requireAuth = <P extends object> (ComposedComponent: React.ComponentType<P>) => {
+    const RequireAuth: React.FC<IProps> = (props: IProps): JSX.Element => {
+        useEffect(() => {
+            if (!props.isAuth) {
+                props.history.push('/login');
+            }
+        });
 
-    componentDidUpdate() {
-      this._checkAndRedirect();
-    }
+        return <>{isAuth ? <ComposedComponent {...props as P} /> : null}</>;
 
-    _checkAndRedirect() {
-      const { isAuth } = this.props;
+    };
 
-      if (!isAuth) {
-        this.props.history.push("/login")
-      }
-    }
+    const mapStateToProps = (state: IReduxState): IStatedProps => ({
+        isAuth: isAuth(state),
+    });
 
-    public render() {
-      return <>{this.props.isAuth ? <ComposedComponent {...this.props as any} /> : null}</>;
-    }
-  }
-
-  const mapStateToProps = (state: ReduxState, ownProps: any): StatedProps => ({
-    isAuth: isAuth(state)
-  });
-
-  return connect(mapStateToProps)(withRouter(RequireAuth));
+    return connect(mapStateToProps)(withRouter(RequireAuth));
 };
-
-export default requireAuth;

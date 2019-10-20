@@ -1,6 +1,5 @@
-export interface FaqDto {
+export interface IFaqDto {
     question: string;
-    answer?:string;
-    id:number;
+    answer?: string;
+    id: number;
 }
-
