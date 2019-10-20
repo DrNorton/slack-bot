@@ -117,8 +117,8 @@ function RoomsTable (props: IProps): JSX.Element {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rooms.map(room => (
-                                        <div key={room.id}>
+                                    {rooms.map((room, index) => (
+                                        <React.Fragment key={room ? room.id : index}>
                                             {props.isFetching ? (
                                                 <TableRow hover>
                                                     <TableCell colSpan={20}>
@@ -155,7 +155,7 @@ function RoomsTable (props: IProps): JSX.Element {
                                                     </TableCell>
                                                 </TableRow>
                                             )}
-                                        </div>
+                                        </React.Fragment>
                                     ))}
                                 </TableBody>
                             </Table>

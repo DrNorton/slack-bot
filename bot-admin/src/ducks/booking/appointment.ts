@@ -34,29 +34,19 @@ export interface IAppointment {
 
 const factory = actionCreatorFactory(prefix);
 
-export const getAppointments = factory.async<void, IAppointmentDto[], ApiError>(
-    'GET_APPOINTMENTS',
-);
+export const getAppointments = factory.async<void, IAppointmentDto[], ApiError>('GET_APPOINTMENTS');
 
 export const createEmpty = Record<IAppointmentModel>({
     appointments: { data: [], isFetching: false, isError: false },
 });
 
 export const appointmentReducer = reducerWithInitialState(createEmpty())
-  // getRooms
-  .case(getAppointments.started, state =>
-    state.setIn(['appointments', 'isFetching'], true),
-  )
-  .case(getAppointments.failed, state =>
-    state.setIn(['appointments', 'isFetching'], false),
-  )
-  .case(getAppointments.done, (state, payload) =>
-    state.setIn(['appointments', 'data'], payload.result),
-  );
+    // getRooms
+    .case(getAppointments.started, state => state.setIn(['appointments', 'isFetching'], true))
+    .case(getAppointments.failed, state => state.setIn(['appointments', 'isFetching'], false))
+    .case(getAppointments.done, (state, payload) => state.setIn(['appointments', 'data'], payload.result));
 
-export const getAppointmentsRawSelector = (
-  state: IReduxState,
-): IAppointmentDto[] => {
+export const getAppointmentsRawSelector = (state: IReduxState): IAppointmentDto[] => {
     return state.appointments.getIn(['appointments', 'data']);
 };
 
@@ -92,13 +82,11 @@ const getAppointmentsWorker = bindAsyncAction(getAppointments, {
 })(function* (): SagaIterator {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.getAppointments]);
-  // TODO костыль на добавление небольшой задержки, чтобы показать скелетон
+    // TODO костыль на добавление небольшой задержки, чтобы показать скелетон
     yield delay(1000);
     return response;
 });
 
 export function* saga (): SagaIterator {
-    yield takeEvery<Action<void>>(getAppointments.started, action =>
-    getAppointmentsWorker(),
-  );
+    yield takeEvery<Action<void>>(getAppointments.started, action => getAppointmentsWorker());
 }
