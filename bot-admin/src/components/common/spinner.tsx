@@ -15,7 +15,7 @@ interface IProps {
 }
 
 export default class Spinner extends React.Component<IProps> {
-    public render(): JSX.Element {
+    public render (): JSX.Element {
         return (
             <div className="sweet-loading">
                 <HashLoader css={override} sizeUnit={'px'} size={150} color={'#123abc'} loading={this.props.isLoading} />

@@ -49,26 +49,26 @@ export const imageReducer = reducerWithInitialState(createEmpty())
 
 const getImagesWorker = bindAsyncAction(getImages, {
     skipStartedAction: true,
-})(function*() {
+})(function* (): any {
     const apiService = new ApiService();
     return yield call([apiService, apiService.getImages]);
 });
 
 const uploadImageWorker = bindAsyncAction(uploadImage, {
     skipStartedAction: true,
-})(function*(image: File) {
+})(function* (image: File): any {
     const apiService = new ApiService();
     return yield call([apiService, apiService.uploadFile], image);
 });
 
 const deleteImageWorker = bindAsyncAction(deleteImage, {
     skipStartedAction: true,
-})(function*(image: IImageDto) {
+})(function* (image: IImageDto): any {
     const apiService = new ApiService();
     return yield call([apiService, apiService.deleteImage], image);
 });
 
-export function* saga(): SagaIterator {
+export function* saga (): SagaIterator {
     yield takeEvery<Action<void>>(getImages.started, action => getImagesWorker());
     yield takeEvery<Action<File>>(uploadImage.started, action => uploadImageWorker(action.payload));
     yield takeEvery<Action<IImageDto>>(deleteImage.started, action => deleteImageWorker(action.payload));

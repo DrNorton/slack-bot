@@ -10,7 +10,7 @@ interface IProps {
     className: string;
 }
 
-export default function ProfileAvatar(props: IProps): JSX.Element {
+export default function ProfileAvatar (props: IProps): JSX.Element {
     let avatar;
     if (props.profile.avatarUrl) {
         avatar = props.profile.avatarUrl;

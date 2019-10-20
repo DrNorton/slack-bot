@@ -3,16 +3,13 @@ import { Record } from 'immutable';
 import { combineReducers } from 'redux';
 
 import { authReducer, IAuthModel } from '../ducks/auth';
+import { appointmentReducer, IAppointmentModel } from '../ducks/booking/appointment';
 import { IRoomsModel, roomsReducer } from '../ducks/booking/rooms';
 import { faqReducer, IFaqModel } from '../ducks/faq';
 import { IImageModel, imageReducer } from '../ducks/image';
 import { IScoreModel, scoreReducer } from '../ducks/score';
 import { ApiError } from '../models/apiError';
 import { errorsReducer } from './errorReducer';
-import {
-    AppointmentModel,
-    appointmentReducer
-} from "../ducks/booking/appointment";
 
 export interface IReduxState {
     faq: Record<IFaqModel>;
@@ -20,7 +17,7 @@ export interface IReduxState {
     error: ApiError;
     auth: Record<IAuthModel>;
     score: Record<IScoreModel>;
-    appointments: Record<AppointmentModel>;
+    appointments: Record<IAppointmentModel>;
     rooms: Record<IRoomsModel>;
 }
 

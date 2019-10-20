@@ -19,8 +19,8 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { IRoomDto } from '../../../../../api/requests/booking/room.dto';
 import { IRoomAttributeTypeDto } from '../../../../../api/requests/booking/roomAttribute.dto';
+import ColorView from '../../addOrEdit/components/colorViewer';
 import TableEditBar from './tableEditBar';
-import ColorView from "../../addOrEdit/components/colorViewer";
 
 interface IProps extends RouteComponentProps {
     attributeTypes: IRoomAttributeTypeDto[];
@@ -118,7 +118,7 @@ function RoomsTable (props: IProps): JSX.Element {
                                 </TableHead>
                                 <TableBody>
                                     {rooms.map(room => (
-                                        <>
+                                        <div key={room.id}>
                                             {props.isFetching ? (
                                                 <TableRow hover>
                                                     <TableCell colSpan={20}>
@@ -155,7 +155,7 @@ function RoomsTable (props: IProps): JSX.Element {
                                                     </TableCell>
                                                 </TableRow>
                                             )}
-                                        </>
+                                        </div>
                                     ))}
                                 </TableBody>
                             </Table>

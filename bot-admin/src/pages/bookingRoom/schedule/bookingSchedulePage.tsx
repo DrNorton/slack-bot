@@ -12,18 +12,13 @@ import { Card, CardContent, colors, createStyles, Theme, useMediaQuery, useTheme
 import { makeStyles } from '@material-ui/styles';
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 import TitleContainerPage from '../../../components/common/titleContainerPage';
+import { getAppointments, getAppointmentsWithRoomsSelector, IAppointment } from '../../../ducks/booking/appointment';
+import { getRooms } from '../../../ducks/booking/rooms';
+import { IReduxState } from '../../../reduxx/reducer';
 import CalendarToolbar from './components/calendarToolbar';
-import { ReduxState } from "../../../reduxx/reducer";
-import AppointmentDto from "../../../api/requests/booking/appointment.dto";
-import {
-    Appointment,
-    getAppointments,
-    getAppointmentsWithRoomsSelector
-} from "../../../ducks/booking/appointment";
-import { getRooms } from "../../../ducks/booking/rooms";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -89,14 +84,15 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
+
 interface IStatedProps {
-  appointments: Appointment[];
-  roomsExists: boolean;
+    appointments: IAppointment[];
+    roomsExists: boolean;
 }
 
 interface IDispatchedProps {
-  getAppointments: () => void;
-  getRooms: () => void;
+    getAppointments: () => void;
+    getRooms: () => void;
 }
 
 interface IProps extends IStatedProps, IDispatchedProps {}
@@ -105,24 +101,24 @@ const BookingSchedulePage = (props: IProps) => {
     const classes = useStyles();
     const calendarRef = useRef(null);
     const theme = useTheme();
-    const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
-    const [view, setView] = useState(mobileDevice ? "listWeek" : "dayGridMonth");
+    const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
+    const [view, setView] = useState(mobileDevice ? 'listWeek' : 'dayGridMonth');
     const [date, setDate] = useState(moment().toDate());
 
     const [eventModal, setEventModal] = useState({
         open: false,
-        event: null
+        event: null,
     });
 
     useEffect(() => {
         let mounted = true;
 
-    const fetchEvents = () => {
-      props.getAppointments();
-      if (!props.roomsExists) {
-        props.getRooms();
-      }
-    };
+        const fetchEvents = () => {
+            props.getAppointments();
+            if (!props.roomsExists) {
+                props.getRooms();
+            }
+        };
 
         fetchEvents();
 
@@ -174,49 +170,60 @@ const BookingSchedulePage = (props: IProps) => {
         setDate(calendarApi.getDate());
     };
 
-  return (
-    <TitleContainerPage subtitle="Бронирование" title="Calendar">
-      <div className={classes.root}>
-        <CalendarToolbar
-          date={date}
-          onDateNext={handleDateNext}
-          onDatePrev={handleDatePrev}
-          onDateToday={handleDateToday}
-          onEventAdd={() => console.log('add event')}
-          onViewChange={handleViewChange}
-          view={view}
-        />
-        <Card className={classes.card}>
-          <CardContent>
-            {props.appointments.length > 0 && (
-              <FullCalendar
-                allDayMaintainDuration
-                defaultDate={date}
-                defaultView={view}
-                droppable
-                editable
-                eventResizableFromStart
-                events={props.appointments}
-                header={false}
-                height={800}
-                plugins={[
-                  dayGridPlugin,
-                  timeGridPlugin,
-                  interactionPlugin,
-                  listPlugin,
-                  timelinePlugin
-                ]}
-                ref={calendarRef}
-                rerenderDelay={10}
-                selectable
-                weekends
-              />
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    </TitleContainerPage>
-  );
+    return (
+        <TitleContainerPage subtitle="Бронирование" title="Calendar">
+            <div className={classes.root}>
+                <CalendarToolbar
+                    date={date}
+                    onDateNext={handleDateNext}
+                    onDatePrev={handleDatePrev}
+                    onDateToday={handleDateToday}
+                    onEventAdd={() => console.log('add event')}
+                    onViewChange={handleViewChange}
+                    view={view}
+                />
+                <Card className={classes.card}>
+                    <CardContent>
+                        {props.appointments.length > 0 && (
+                            <FullCalendar
+                                allDayMaintainDuration
+                                defaultDate={date}
+                                defaultView={view}
+                                droppable
+                                editable
+                                eventResizableFromStart
+                                events={props.appointments}
+                                header={false}
+                                height={800}
+                                plugins={[
+                                    dayGridPlugin,
+                                    timeGridPlugin,
+                                    interactionPlugin,
+                                    listPlugin,
+                                    timelinePlugin,
+                                ]}
+                                ref={calendarRef}
+                                rerenderDelay={10}
+                                selectable
+                                weekends
+                            />
+                        )}
+                    </CardContent>
+                </Card>
+            </div>
+        </TitleContainerPage>
+    );
 };
 
-export default BookingSchedulePage;
+const mapStateToProps = (state: IReduxState): IStatedProps => ({
+    appointments: getAppointmentsWithRoomsSelector(state),
+    roomsExists: state.rooms.get('rooms').count() !== 0,
+});
+
+export default connect<IStatedProps, IDispatchedProps, void, IReduxState>(
+    mapStateToProps,
+    {
+        getAppointments: getAppointments.started,
+        getRooms: getRooms.started,
+    },
+)(BookingSchedulePage);

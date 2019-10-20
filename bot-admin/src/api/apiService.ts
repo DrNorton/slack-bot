@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ApiError } from '../models/apiError';
+import { IAppointmentDto } from './requests/booking/appointment.dto';
 import { IRoomDto } from './requests/booking/room.dto';
 import { IRoomAttributeTypeDto } from './requests/booking/roomAttribute.dto';
 import { IEmojiDto } from './requests/emoji.dto';
@@ -7,7 +8,6 @@ import { IFaqDto } from './requests/faq.dto';
 import { IImageDto } from './requests/image.dto';
 import { ITopItemDto } from './requests/topItemDto';
 import { EWinnerPeriod } from './requests/winnerPeriod';
-import AppointmentDto from './requests/booking/appointment.dto';
 
 export interface IBaseApiResponse<T> {
     errorCode: number;
@@ -47,8 +47,7 @@ export default class ApiService {
     }
 
     public async createFaqItem (faqItem: IFaqDto): Promise<IFaqDto> {
-        const response = await this.postRequest<IFaqDto>(`${apiUrls.faq}`, faqItem);
-        return response;
+        return await this.postRequest<IFaqDto>(`${apiUrls.faq}`, faqItem);
     }
 
     public async uploadFile (file: File): Promise<any> {
@@ -150,9 +149,9 @@ export default class ApiService {
         return await this.putRequest<IRoomAttributeTypeDto>(url, newType);
     }
 
-    public async getAppointments(): Promise<AppointmentDto[]> {
+    public async getAppointments (): Promise<IAppointmentDto[]> {
         const url = `${apiUrls.appointment}`;
-        return await this.getRequest<AppointmentDto[]>(url);
+        return await this.getRequest<IAppointmentDto[]>(url);
     }
 
     private async getRequest<R> (url: string, options?: IRequestOptions): Promise<R> {

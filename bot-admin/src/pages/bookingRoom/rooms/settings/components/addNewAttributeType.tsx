@@ -30,21 +30,21 @@ interface IProps {
     onAdd: (attributeType: IRoomAttributeTypeDto) => void;
 }
 
-export default function AddNewAttributeType(props: IProps): JSX.Element {
+export default function AddNewAttributeType (props: IProps): JSX.Element {
     const classes = useStyles();
     const [isOpen, setOpen] = useState(false);
     const [attributeName, setAttributeName] = useState('');
     const [defaultValue, setDefaultValue] = useState('');
 
-    function openDialog(): void {
+    function openDialog (): void {
         setOpen(true);
     }
 
-    function closeDialog(): void {
+    function closeDialog (): void {
         setOpen(false);
     }
 
-    function onSave(): void {
+    function onSave (): void {
         props.onAdd({
             name: attributeName,
             defaultValue,

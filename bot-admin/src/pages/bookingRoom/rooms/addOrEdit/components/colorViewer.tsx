@@ -1,24 +1,21 @@
-import IconButton from "@material-ui/core/IconButton";
-import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    colorPreview: {
-      height: "30px",
-      width: "30px",
-      borderRadius: "4px"
-    }
-  })
+    createStyles({
+        colorPreview: {
+            height: '30px',
+            width: '30px',
+            borderRadius: '4px',
+        },
+    }),
 );
 
-interface Props {
-  color: string;
+interface IProps {
+    color: string;
 }
 
-export default function ColorView(props: Props) {
-  const classes = useStyles();
-  return (
-    <div className={classes.colorPreview} style={{ background: props.color }} />
-  );
+export default function ColorView (props: IProps): JSX.Element {
+    const classes = useStyles();
+    return <div className={classes.colorPreview} style={{ background: props.color }} />;
 }

@@ -76,7 +76,7 @@ export const scoreReducer = reducerWithInitialState(createEmpty())
 
 const getEmojiWorker = bindAsyncAction(getEmoji, {
     skipStartedAction: true,
-})(function*() {
+})(function* (): any {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.getEmojies]);
     // TODO костыль на добавление небольшой задержки, чтобы показать скелетон
@@ -86,7 +86,7 @@ const getEmojiWorker = bindAsyncAction(getEmoji, {
 
 const getWeekWinnersWorker = bindAsyncAction(getWinnersByPeriod, {
     skipStartedAction: true,
-})(function*(payload: EWinnerPeriod) {
+})(function* (payload: EWinnerPeriod): any {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.getPeriodWinners], payload);
     return response;
@@ -94,15 +94,14 @@ const getWeekWinnersWorker = bindAsyncAction(getWinnersByPeriod, {
 
 const deleteEmojiWorker = bindAsyncAction(deleteEmoji, {
     skipStartedAction: true,
-})(function*(payload: IEmojiDto) {
+})(function* (payload: IEmojiDto): any {
     const apiService = new ApiService();
-    const response = yield call([apiService, apiService.deleteEmoji], payload);
-    return response;
+    return yield call([apiService, apiService.deleteEmoji], payload);
 });
 
 const updateEmojiWorker = bindAsyncAction(updateEmoji, {
     skipStartedAction: true,
-})(function*(payload: IUpdateEmojiPayload) {
+})(function* (payload: IUpdateEmojiPayload): any {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.updateEmoji], payload.updatedEmoji);
     // TODO костыль на добавление небольшой задержки, чтобы показать скелетон
@@ -122,7 +121,7 @@ export const getEmojiSelector = createSelector(
     bar => bar,
 );
 
-export function* saga(): SagaIterator {
+export function* saga (): SagaIterator {
     yield takeEvery<Action<void>>(getEmoji.started, action => getEmojiWorker());
     yield takeEvery<Action<EWinnerPeriod>>(getWinnersByPeriod.started, action => getWeekWinnersWorker(action.payload));
     yield takeEvery<Action<IEmojiDto>>(deleteEmoji.started, action => deleteEmojiWorker(action.payload));

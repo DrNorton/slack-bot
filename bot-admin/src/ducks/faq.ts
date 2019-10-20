@@ -72,7 +72,7 @@ export const faqReducer = reducerWithInitialState(createEmpty())
 
 const getFaqItemsWorker = bindAsyncAction(getFaqItems, {
     skipStartedAction: true,
-})(function*(): SagaIterator {
+})(function* (): SagaIterator {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.getFaqItems]);
     // TODO костыль на добавление небольшой задержки, чтобы показать скелетон
@@ -82,7 +82,7 @@ const getFaqItemsWorker = bindAsyncAction(getFaqItems, {
 
 const getFaqItemByIdWorker = bindAsyncAction(getFaqItemById, {
     skipStartedAction: true,
-})(function*(eventId: number): SagaIterator {
+})(function* (eventId: number): SagaIterator {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.getFaqItemById], eventId);
     // TODO костыль на добавление небольшой задержки, чтобы показать скелетон
@@ -92,7 +92,7 @@ const getFaqItemByIdWorker = bindAsyncAction(getFaqItemById, {
 
 const createOrUpdateFaqItemWorker = bindAsyncAction(createOrUpdateFaqItem, {
     skipStartedAction: true,
-})(function*(payload: ICreateOrUpdateFaqPayload): SagaIterator {
+})(function* (payload: ICreateOrUpdateFaqPayload): SagaIterator {
     const apiService = new ApiService();
     let result;
     if (payload.isUpdate) {
@@ -106,12 +106,12 @@ const createOrUpdateFaqItemWorker = bindAsyncAction(createOrUpdateFaqItem, {
 
 const deleteEventWorker = bindAsyncAction(deleteFaqItem, {
     skipStartedAction: true,
-})(function*(payload: IFaqDto): SagaIterator {
+})(function* (payload: IFaqDto): SagaIterator {
     const apiService = new ApiService();
     return yield call([apiService, apiService.deleteFaqItem], payload);
 });
 
-export function* saga(): SagaIterator {
+export function* saga (): SagaIterator {
     yield takeEvery<Action<void>>(getFaqItems.started, action => getFaqItemsWorker(action.payload));
     yield takeEvery<Action<number>>(getFaqItemById.started, action => getFaqItemByIdWorker(action.payload));
     yield takeEvery<Action<ICreateOrUpdateFaqPayload>>(createOrUpdateFaqItem.started, action => createOrUpdateFaqItemWorker(action.payload));

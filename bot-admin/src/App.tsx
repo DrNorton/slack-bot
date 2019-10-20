@@ -13,7 +13,7 @@ import theme from './theme';
 
 require('dotenv').config();
 
-function App(): JSX.Element {
+function App (): JSX.Element {
     return (
         <Provider store={configuredStore}>
             <MuiThemeProvider theme={theme}>

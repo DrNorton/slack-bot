@@ -31,7 +31,7 @@ interface IProps extends IDispatchedProps, RouteComponentProps {
     onSidebarOpen: () => void;
 }
 
-function Topbar(props: IProps): JSX.Element {
+function Topbar (props: IProps): JSX.Element {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { onSidebarOpen, staticContext, logout: logoutMethod, history, ...rest } = props;
 

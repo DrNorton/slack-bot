@@ -1,4 +1,4 @@
-export function isURL(str: string): boolean {
+export function isURL (str: string): boolean {
     const pattern = new RegExp(
         '^(https?:\\/\\/)?' + // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
@@ -28,7 +28,7 @@ const combineStyles = (...styles: any[]): any => {
 
 export default combineStyles;
 
-export function devideArrayThroughOne<T>(array: Array<T>): [Array<T>, Array<T>] {
+export function devideArrayThroughOne<T> (array: Array<T>): [Array<T>, Array<T>] {
     const array1: Array<T> = [];
     const array2: Array<T> = [];
     for (let i = 0; i < array.length; i++) {

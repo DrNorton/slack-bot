@@ -57,7 +57,7 @@ const EmojiList: React.FunctionComponent<IEmojiListProps> = (props: IEmojiListPr
     const [selectedItem, setSelectedItem] = useState();
     const items = props.isFetching ? Array.from(new Array(props.emoji.length === 0 ? 10 : props.emoji.length)) : props.emoji;
 
-    function onChange(changed: IEmojiDto, newScore: number): void {
+    function onChange (changed: IEmojiDto, newScore: number): void {
         changed.scorePoints = newScore;
         props.onChange(changed);
     }

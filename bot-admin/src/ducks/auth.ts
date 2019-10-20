@@ -56,7 +56,7 @@ export const authReducer = reducerWithInitialState(createEmpty())
 
 const checkTokenWorker = bindAsyncAction(checkTokenAndGetProfile, {
     skipStartedAction: true,
-})(function*(params: ICheckTokenPayload): SagaIterator {
+})(function* (params: ICheckTokenPayload): SagaIterator {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.getProfile], params.token);
     localStorage.setItem('token', params.token);
@@ -69,7 +69,7 @@ const checkTokenWorker = bindAsyncAction(checkTokenAndGetProfile, {
 
 const getProfileWorker = bindAsyncAction(getProfile, {
     skipStartedAction: true,
-})(function*(): SagaIterator {
+})(function* (): SagaIterator {
     const apiService = new ApiService();
     const response = yield call([apiService, apiService.getProfile]);
     // TODO костыль на добавление небольшой задержки, чтобы показать скелетон
@@ -77,11 +77,11 @@ const getProfileWorker = bindAsyncAction(getProfile, {
     return response;
 });
 
-export function isAuth(state: IReduxState): boolean {
+export function isAuth (state: IReduxState): boolean {
     return !!state.auth.get('token');
 }
 
-export function* saga(): SagaIterator {
+export function* saga (): SagaIterator {
     yield takeEvery<Action<ICheckTokenPayload>>(checkTokenAndGetProfile.started, action => checkTokenWorker(action.payload));
 
     yield takeEvery<Action<void>>(getProfile.started, action => getProfileWorker(action.payload));

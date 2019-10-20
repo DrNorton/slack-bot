@@ -69,8 +69,7 @@ const FaqItemComponent: React.FunctionComponent<IFaqItemProps> = props => {
                             action={
                                 <IconButton onClick={e => props.onDelete(faqItem)} edge="end" aria-label="delete" style={{ marginRight: 5 }}>
                                     <DeleteOutlined />
-                                </IconButton>
-                            }
+                                </IconButton>}
                         />
                         <Divider />
                         <CardContent>

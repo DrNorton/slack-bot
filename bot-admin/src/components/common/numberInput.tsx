@@ -24,11 +24,11 @@ const useStyles = makeStyles(() =>
 const NumberInput: React.FunctionComponent<IProps> = props => {
     const styles = useStyles();
 
-    function up(): void {
+    function up (): void {
         props.onChange(props.value + 1);
     }
 
-    function down(): void {
+    function down (): void {
         props.onChange(props.value - 1);
     }
 
