@@ -7,6 +7,7 @@ import { IFaqDto } from './requests/faq.dto';
 import { IImageDto } from './requests/image.dto';
 import { ITopItemDto } from './requests/topItemDto';
 import { EWinnerPeriod } from './requests/winnerPeriod';
+import AppointmentDto from './requests/booking/appointment.dto';
 
 export interface IBaseApiResponse<T> {
     errorCode: number;
@@ -149,6 +150,11 @@ export default class ApiService {
         return await this.putRequest<IRoomAttributeTypeDto>(url, newType);
     }
 
+    public async getAppointments(): Promise<AppointmentDto[]> {
+        const url = `${apiUrls.appointment}`;
+        return await this.getRequest<AppointmentDto[]>(url);
+    }
+
     private async getRequest<R> (url: string, options?: IRequestOptions): Promise<R> {
         const get = axios.get(url, this.getConfig(options));
 
@@ -213,4 +219,5 @@ const apiUrls = {
     room: '/api/room',
     score: '/api/score',
     attributeTypes: '/api/attributetypes',
+    appointment: '/api/appointment',
 };

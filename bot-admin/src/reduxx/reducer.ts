@@ -9,6 +9,10 @@ import { IImageModel, imageReducer } from '../ducks/image';
 import { IScoreModel, scoreReducer } from '../ducks/score';
 import { ApiError } from '../models/apiError';
 import { errorsReducer } from './errorReducer';
+import {
+    AppointmentModel,
+    appointmentReducer
+} from "../ducks/booking/appointment";
 
 export interface IReduxState {
     faq: Record<IFaqModel>;
@@ -16,6 +20,7 @@ export interface IReduxState {
     error: ApiError;
     auth: Record<IAuthModel>;
     score: Record<IScoreModel>;
+    appointments: Record<AppointmentModel>;
     rooms: Record<IRoomsModel>;
 }
 
@@ -27,5 +32,6 @@ export default (history: any) =>
         error: errorsReducer,
         auth: authReducer,
         score: scoreReducer,
+        appointments: appointmentReducer,
         rooms: roomsReducer,
     });

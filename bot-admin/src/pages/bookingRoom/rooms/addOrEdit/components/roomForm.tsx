@@ -9,6 +9,7 @@ import * as React from 'react';
 
 import { IRoomDto } from '../../../../../api/requests/booking/room.dto';
 import ImagePicker from './imagePicker';
+import ColorPicker from "./colorPicker";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -45,6 +46,10 @@ export default function RoomForm(props: IProps): JSX.Element {
                         </Grid>
                         <Grid item={true} xs={10}>
                             <Field id="name" name="name" label="Name" fullWidth component={TextField} />
+                            <ColorPicker
+                                color={props.values["color"]}
+                                onColorChange={hex => props.setFieldValue("color", hex)}
+                            />
                         </Grid>
                     </Grid>
                 </Paper>

@@ -20,6 +20,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { IRoomDto } from '../../../../../api/requests/booking/room.dto';
 import { IRoomAttributeTypeDto } from '../../../../../api/requests/booking/roomAttribute.dto';
 import TableEditBar from './tableEditBar';
+import ColorView from "../../addOrEdit/components/colorViewer";
 
 interface IProps extends RouteComponentProps {
     attributeTypes: IRoomAttributeTypeDto[];
@@ -107,6 +108,7 @@ function RoomsTable (props: IProps): JSX.Element {
                                                 onChange={handleSelectAll}
                                             />
                                         </TableCell>
+                                        <TableCell padding="checkbox">Цвет</TableCell>
                                         <TableCell>Название</TableCell>
                                         {props.attributeTypes.map(type => (
                                             <TableCell>{type.name}</TableCell>
@@ -132,6 +134,9 @@ function RoomsTable (props: IProps): JSX.Element {
                                                             onChange={event => handleSelectOne(event, room.id)}
                                                             value={selectedRooms.indexOf(room.id) !== -1}
                                                         />
+                                                    </TableCell>
+                                                    <TableCell padding="checkbox">
+                                                        <ColorView color={room.color} />
                                                     </TableCell>
                                                     <TableCell>
                                                         <div className={classes.nameCell}>

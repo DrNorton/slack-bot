@@ -27,7 +27,7 @@ export class RoomsService implements ICrudService<RoomDto> {
 
   public async getById(teamId: string, id: number): Promise<RoomDto> {
     const room = await this.roomRepository.findOne({
-      relations: ['attributes'],
+      relations: ['attributes', 'attributes.attributeType'],
       where: [{ id, team: { id: teamId } }],
     });
     if (room) {
@@ -45,8 +45,10 @@ export class RoomsService implements ICrudService<RoomDto> {
   public async add(teamId: string, roomDto: RoomDto): Promise<RoomDto> {
     const newRoom = new RoomEntity();
     newRoom.teamId = teamId;
+    newRoom.id = roomDto.id;
     newRoom.name = roomDto.name;
     newRoom.image = roomDto.image;
+    newRoom.color = roomDto.color;
     if (roomDto.attributes) {
       newRoom.attributes = roomDto.attributes.map(attr =>
         RoomAttributeEntity.fromDto(attr),

@@ -12,9 +12,18 @@ import { Card, CardContent, colors, createStyles, Theme, useMediaQuery, useTheme
 import { makeStyles } from '@material-ui/styles';
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
+import { connect } from "react-redux";
 
 import TitleContainerPage from '../../../components/common/titleContainerPage';
 import CalendarToolbar from './components/calendarToolbar';
+import { ReduxState } from "../../../reduxx/reducer";
+import AppointmentDto from "../../../api/requests/booking/appointment.dto";
+import {
+    Appointment,
+    getAppointments,
+    getAppointmentsWithRoomsSelector
+} from "../../../ducks/booking/appointment";
+import { getRooms } from "../../../ducks/booking/rooms";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -80,24 +89,40 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }),
 );
+interface IStatedProps {
+  appointments: Appointment[];
+  roomsExists: boolean;
+}
 
-const BookingSchedulePage = () => {
+interface IDispatchedProps {
+  getAppointments: () => void;
+  getRooms: () => void;
+}
+
+interface IProps extends IStatedProps, IDispatchedProps {}
+
+const BookingSchedulePage = (props: IProps) => {
     const classes = useStyles();
     const calendarRef = useRef(null);
     const theme = useTheme();
-    const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
-    const [view, setView] = useState(mobileDevice ? 'listWeek' : 'dayGridMonth');
-    const [date, setDate] = useState(moment('2019-07-30 08:00:00').toDate());
-    const [events, setEvents] = useState([]);
-    // const [eventModal, setEventModal] = useState({
-    //     open: false,
-    //     event: null,
-    // });
+    const mobileDevice = useMediaQuery(theme.breakpoints.down("sm"));
+    const [view, setView] = useState(mobileDevice ? "listWeek" : "dayGridMonth");
+    const [date, setDate] = useState(moment().toDate());
+
+    const [eventModal, setEventModal] = useState({
+        open: false,
+        event: null
+    });
 
     useEffect(() => {
         let mounted = true;
 
-        const fetchEvents = () => console.log('fetch events');
+    const fetchEvents = () => {
+      props.getAppointments();
+      if (!props.roomsExists) {
+        props.getRooms();
+      }
+    };
 
         fetchEvents();
 
@@ -149,41 +174,49 @@ const BookingSchedulePage = () => {
         setDate(calendarApi.getDate());
     };
 
-    return (
-        <TitleContainerPage subtitle="Бронирование" title="Calendar">
-            <div className={classes.root}>
-                <CalendarToolbar
-                    date={date}
-                    onDateNext={handleDateNext}
-                    onDatePrev={handleDatePrev}
-                    onDateToday={handleDateToday}
-                    onEventAdd={() => console.log('add event')}
-                    onViewChange={handleViewChange}
-                    view={view}
-                />
-                <Card className={classes.card}>
-                    <CardContent>
-                        <FullCalendar
-                            allDayMaintainDuration
-                            defaultDate={date}
-                            defaultView={view}
-                            droppable
-                            editable
-                            eventResizableFromStart
-                            events={events}
-                            header={false}
-                            height={800}
-                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, timelinePlugin]}
-                            ref={calendarRef}
-                            rerenderDelay={10}
-                            selectable
-                            weekends
-                        />
-                    </CardContent>
-                </Card>
-            </div>
-        </TitleContainerPage>
-    );
+  return (
+    <TitleContainerPage subtitle="Бронирование" title="Calendar">
+      <div className={classes.root}>
+        <CalendarToolbar
+          date={date}
+          onDateNext={handleDateNext}
+          onDatePrev={handleDatePrev}
+          onDateToday={handleDateToday}
+          onEventAdd={() => console.log('add event')}
+          onViewChange={handleViewChange}
+          view={view}
+        />
+        <Card className={classes.card}>
+          <CardContent>
+            {props.appointments.length > 0 && (
+              <FullCalendar
+                allDayMaintainDuration
+                defaultDate={date}
+                defaultView={view}
+                droppable
+                editable
+                eventResizableFromStart
+                events={props.appointments}
+                header={false}
+                height={800}
+                plugins={[
+                  dayGridPlugin,
+                  timeGridPlugin,
+                  interactionPlugin,
+                  listPlugin,
+                  timelinePlugin
+                ]}
+                ref={calendarRef}
+                rerenderDelay={10}
+                selectable
+                weekends
+              />
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </TitleContainerPage>
+  );
 };
 
 export default BookingSchedulePage;

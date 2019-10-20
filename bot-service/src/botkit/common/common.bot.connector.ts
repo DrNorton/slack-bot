@@ -31,6 +31,7 @@ export default class CommonBotConnector {
         'users:read',
         'team:read',
         'emoji:read',
+        'commands',
       ],
       redirectUri: process.env.redirectUri,
       getTokenForTeam: this.getTokenForTeam,

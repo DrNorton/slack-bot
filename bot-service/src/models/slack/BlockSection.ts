@@ -6,7 +6,7 @@ export default class BlockSection extends BaseBlock {
   type: string;
   text: BlockText;
   block_id?: string;
-  fields: any;
+  fields?: BlockBaseElement[];
   accessory: BlockBaseElement;
 
   constructor() {

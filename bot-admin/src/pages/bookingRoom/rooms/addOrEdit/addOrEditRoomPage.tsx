@@ -100,6 +100,7 @@ class AddOrEditRoomPage extends React.Component<IProps, IState> {
         this.props.history.goBack();
     };
 
+
     private createInitValue = (props: IProps): IRoomDto => {
         if (props.editedRoom) {
             return props.editedRoom;
@@ -107,6 +108,7 @@ class AddOrEditRoomPage extends React.Component<IProps, IState> {
             return {
                 id: -1,
                 name: '',
+                color: "#000000",
                 attributes: props.attributeTypes.map(type => ({
                     value: type.defaultValue,
                     attributeType: type,

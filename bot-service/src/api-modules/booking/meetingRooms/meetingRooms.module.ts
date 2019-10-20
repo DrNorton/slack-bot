@@ -19,5 +19,6 @@ import RoomAttributeTypesController from './attributeTypes/roomAttributeTypes.co
   ],
   providers: [RoomsService, RoomAttributeTypeService, RoomAttributeService],
   controllers: [RoomController, RoomAttributeTypesController],
+  exports: [RoomsService],
 })
 export class MeetingRoomsModule {}

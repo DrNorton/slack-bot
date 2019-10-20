@@ -1,6 +1,8 @@
 {
   "majestic": {
-    "args": ["-i -c ./test/jest-unit.json"],
+    "args": [
+      "-i -c ./test/jest-unit.json"
+    ],
     "env": {
       "CI": "true"
     }
