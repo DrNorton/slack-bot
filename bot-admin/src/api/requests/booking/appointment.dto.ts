@@ -1,3 +1,4 @@
+// IAppointmentDto
 export interface IAppointmentDto {
     id: number;
     roomId: number;
