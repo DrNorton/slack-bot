@@ -6,50 +6,58 @@ import BlockText from '../../../models/slack/BlockText';
 import BlockSection from '../../../models/slack/BlockSection';
 import BlockDivider from '../../../models/slack/BlockDivider';
 import ImageElement from '../../../models/slack/elements/ImageElement';
-import BlockAction from '../../../models/slack/BlockAction';
-import BlockButtonElement from '../../../models/slack/elements/BlockButtonElement';
 import BlockDatePicker from '../../../models/slack/elements/BlockDatePicker';
 import BlockInput from '../../../models/slack/BlockInput';
 import StaticSelect from '../../../models/slack/elements/StaticSelect';
+import bookingView from './views/bookingView';
 
 @Injectable()
 export default class BookingDialogService {
-  constructor(private readonly roomService: RoomsService) {}
+  constructor(private readonly roomService: RoomsService) {
+  }
 
   public async getRoomsDialog(teamId: string) {
     const rooms = await this.roomService.getAll(teamId);
-    const blocks: BaseBlock[] = [];
-    const blockSection = new BlockSection();
-    blockSection.text = new BlockText();
-    blockSection.text.text = '\n\n *Выберите переговорку:*';
-    blockSection.text.type = BlockTextTypes.Markdown;
-    blocks.push(blockSection);
-    const divider = new BlockDivider();
-    blocks.push(divider);
+    return bookingView(rooms);
+    /*const blocks: BaseBlock[] = [];
+
+    blocks.push(
+      new BlockSection(
+        new BlockText(
+          BlockTextTypes.Markdown,
+          '\n\n *Выберите переговорку:*',
+          true,
+        ),
+      ),
+    );
+    blocks.push(new BlockDivider());
     rooms.map(room => {
       const roomSection = this.createRoomSection(room);
       const actions = new BlockAction();
-      const blockButton = new BlockButtonElement();
-      blockButton.text = new BlockText();
-      blockButton.value = room.id.toString();
-      blockButton.text.text = 'Выбрать';
-      blockButton.text.type = BlockTextTypes.PlainText;
-      blockButton.action_id = 'picked_room';
+      const blockButton = new BlockButtonElement(
+        new BlockText(BlockTextTypes.PlainText, 'Выбрать', true),
+        room.id.toString(),
+        'picked_room',
+      );
+
       actions.elements.push(blockButton);
 
       blocks.push(roomSection);
       blocks.push(actions);
-      blocks.push(divider);
+      blocks.push(new BlockDivider());
     });
 
-    return blocks;
+    return blocks;*/
   }
 
   private createRoomSection(room) {
-    const roomSection = new BlockSection();
-    roomSection.text = new BlockText();
-    roomSection.text.type = BlockTextTypes.Markdown;
-    roomSection.text.text = `*${room.name}* \n\n Описание переговорки`;
+    const roomSection = new BlockSection(
+      new BlockText(
+        BlockTextTypes.Markdown,
+        `*${room.name}* \n\n Описание переговорки`,
+        true,
+      ),
+    );
     roomSection.accessory = new ImageElement(room.image, room.name);
     roomSection.fields = [];
     room.attributes.map(attribute => {
@@ -79,12 +87,14 @@ export default class BookingDialogService {
     blocks.push(datePicker);
 
     const timeSelect = new BlockInput();
+    timeSelect.block_id = 'time';
     timeSelect.label = new BlockText(
       BlockTextTypes.PlainText,
       'Выберите время:',
       true,
     );
     const select = new StaticSelect();
+    timeSelect.block_id = 'period';
     select.placeholder = new BlockText(BlockTextTypes.PlainText, 'Время', true);
     select.options.push({
       text: new BlockText(BlockTextTypes.PlainText, '15 минут'),

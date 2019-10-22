@@ -5,12 +5,12 @@ import BaseBlock from './BaseBlock';
 export default class BlockSection extends BaseBlock {
   type: string;
   text: BlockText;
-  block_id?: string;
   fields?: BlockBaseElement[];
   accessory: BlockBaseElement;
 
-  constructor() {
+  constructor(text: BlockText) {
     super();
     this.type = 'section';
+    this.text = text;
   }
 }
