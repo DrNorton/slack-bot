@@ -1,24 +1,36 @@
+image: docker:latest
+services:
+  - docker:dind
+
 stages:
   - build
+  - deploy
 
-bot-app-build:
+admin-build-test:
   stage: build
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker pull $CI_REGISTRY_IMAGE/bot-app:latest || true
-    - docker build -f bot-admin/docker/Dockerfile --cache-from $CI_REGISTRY_IMAGE/bot-app:latest --tag $CI_REGISTRY_IMAGE/bot-app:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/bot-app:latest ./bot-admin
-    - docker push $CI_REGISTRY_IMAGE/bot-app:$CI_COMMIT_SHA
-    - docker push $CI_REGISTRY_IMAGE/bot-app:latest
-  tags:
-    - docker
-    
-bot-service-build:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE/admin:latest || true
+    - docker build -f bot-admin/docker/Dockerfile --cache-from $CI_REGISTRY_IMAGE/admin:latest --tag $CI_REGISTRY_IMAGE/admin:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/admin:latest ./bot-admin
+    - docker push $CI_REGISTRY_IMAGE/admin:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/admin:latest
+
+api-build-test:
   stage: build
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker pull $CI_REGISTRY_IMAGE/bot-service:latest || true
-    - docker build -f bot-service/docker/Dockerfile --cache-from $CI_REGISTRY_IMAGE/bot-service:latest --tag $CI_REGISTRY_IMAGE/bot-service:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/bot-service:latest ./bot-service
-    - docker push $CI_REGISTRY_IMAGE/bot-service:$CI_COMMIT_SHA
-    - docker push $CI_REGISTRY_IMAGE/bot-service:latest
+    - cp deploy/test/.api-env bot-service/.env
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE/api:latest || true
+    - docker build -f bot-service/docker/Dockerfile --cache-from $CI_REGISTRY_IMAGE/api:latest --tag $CI_REGISTRY_IMAGE/api:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/api:latest ./bot-service
+    - docker push $CI_REGISTRY_IMAGE/api:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE/api:latest
+
+deploy-test:
+  stage: deploy
+  dependencies: []
+  image: docker:stable
   tags:
-    - docker
+    - test
+  script:
+    - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker stack deploy --with-registry-auth --compose-file deploy/test/docker-compose.yml slackbot
