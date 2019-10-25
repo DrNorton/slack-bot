@@ -1,14 +1,14 @@
 /** @jsx JSXSlack.h */
 
 import RoomDto from '../../../../api-modules/booking/meetingRooms/rooms/dto/room.dto';
-import { Actions, Button, Divider, Field, Fragment, Image, JSXSlack, Section } from '@speee-js/jsx-slack';
+import { Field, Fragment, Image, JSXSlack, Section } from '@speee-js/jsx-slack';
 
 interface Props {
   room: RoomDto;
   children?: any;
 }
 
-export const RoomView = (props: Props) => (
+export const RoomFragment = (props: Props) => (
   <Fragment>
     <Section>
       <b>{props.room.name}</b>
@@ -22,10 +22,7 @@ export const RoomView = (props: Props) => (
         </Field>
       ))}
     </Section>
-    <Actions>
-      <Button actionId="picked_room">Выбрать</Button>
-    </Actions>
-    <Divider/>
+
   </Fragment>
 );
 

@@ -30,6 +30,7 @@ export class AppointmentService {
 
   public async getSlots(
     teamId: string,
+    roomId: number,
     date: Date,
     period: number,
   ): Promise<SlotDto[]> {

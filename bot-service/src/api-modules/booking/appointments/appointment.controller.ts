@@ -46,11 +46,13 @@ export default class AppointmentController extends BaseController {
   @Get('/slots/:date/:period')
   public async getSlots(
     @User() user: InstalledUserDto,
+    @Param('roomId') roomId: number,
     @Param('date') date: Date,
     @Param('period') period: number,
   ): Promise<BaseApiResponse<SlotDto[]>> {
     const result = await this.appointmentService.getSlots(
       user.teamId,
+      roomId,
       date,
       period,
     );
