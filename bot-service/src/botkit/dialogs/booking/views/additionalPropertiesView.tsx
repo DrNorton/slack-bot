@@ -11,10 +11,17 @@ export default function AdditionalPropertiesView(props: BookingDialogModel) {
       close="Закрыть"
     >
       <Divider/>
-      <Input label="Название" name="title" maxLength={80} required/>
+      <Input
+        label="Название"
+        name="title"
+        blockId="titleBlock"
+        maxLength={80}
+        required
+      />
       <Textarea
         label="Описание"
         name="description"
+        blockId="descriptionBlock"
         placeholder="Описание?"
         maxLength={280}
         required
@@ -23,8 +30,10 @@ export default function AdditionalPropertiesView(props: BookingDialogModel) {
       <Input type="hidden" name="roomId" value={props.roomId}/>
       <Input type="hidden" name="duration" value={props.duration}/>
       <Input type="hidden" name="date" value={props.date}/>
-      <Input label="Участники" title="Участники" required>
-        <UsersSelect multiple/>
+      <Input type="hidden" name="start" value={props.start}/>
+      <Input type="hidden" name="end" value={props.end}/>
+      <Input blockId="members" label="Участники" title="Участники" required>
+        <UsersSelect actionId="membersSelect" multiple/>
       </Input>
     </Modal>,
   );

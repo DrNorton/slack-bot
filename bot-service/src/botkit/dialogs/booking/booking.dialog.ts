@@ -3,6 +3,8 @@ import CommonBotConnector from '../../common/common.bot.connector';
 import BookingDialogService, { BookingDialogModel } from './booking.dialog.service';
 import { SlackBotWorker } from 'botbuilder-adapter-slack';
 import { BotkitMessage } from 'botkit';
+import AppointmentDto from '../../../api-modules/booking/appointments/dto/appointment.dto';
+import moment = require('moment');
 
 @Injectable()
 export default class BookingDialog {
@@ -40,11 +42,14 @@ export default class BookingDialog {
         });
       } else if (action.action_id.includes('select_slot')) {
         const privateMetadata = JSON.parse(message.view.private_metadata);
+        const selectedSlot = JSON.parse(action.value);
         const model: BookingDialogModel = {
           teamId: message.team.id,
           roomId: parseInt(privateMetadata.roomId, 10),
           duration: parseInt(privateMetadata.duration, 10),
           date: new Date(privateMetadata.date),
+          start: moment(selectedSlot.start, 'DD-MM-YYYY HH:mm').toDate(),
+          end: moment(selectedSlot.end, 'DD-MM-YYYY HH:mm').toDate(),
         };
 
         const dialog = await this.bookingDialogService.getAdditionalPropertiesPicker(
@@ -84,6 +89,22 @@ export default class BookingDialog {
             response_action: 'update',
             view: blocks,
           });
+        }
+
+        if (message.view.callback_id === 'booking_pick_room') {
+          const privateMetadata = JSON.parse(message.view.private_metadata);
+          const values = message.view.state.values;
+          const members = values.members.membersSelect.selected_users;
+          const appointment = new AppointmentDto();
+          appointment.title = values.titleBlock.title.value;
+          appointment.desc = values.descriptionBlock.description.value;
+          appointment.roomId = privateMetadata.roomId;
+          appointment.start = privateMetadata.start;
+          appointment.end = privateMetadata.end;
+          await this.bookingDialogService.createAppointment(
+            message.team.id,
+            appointment,
+          );
         }
       },
     );

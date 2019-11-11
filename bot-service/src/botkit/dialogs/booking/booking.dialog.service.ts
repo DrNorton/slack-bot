@@ -1,16 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { RoomsService } from '../../../api-modules/booking/meetingRooms/rooms/rooms.service';
 import selectRoomView from './views/selectRoomView';
-import { BookingTimeView } from './views/bookingTimeView';
+import { DurationPicker } from './views/durationPicker';
 import SlotsView from './views/slotsView';
 import { AppointmentService } from '../../../api-modules/booking/appointments/appointment.service';
 import AdditionalPropertiesView from './views/additionalPropertiesView';
+import AppointmentDto from '../../../api-modules/booking/appointments/dto/appointment.dto';
 
 export interface BookingDialogModel {
   teamId: string;
   roomId?: number;
   duration?: number;
   date?: Date;
+  start?: Date;
+  end?: Date;
 }
 
 @Injectable()
@@ -28,7 +31,7 @@ export default class BookingDialogService {
 
   public async getDatePicker(model: BookingDialogModel) {
     const room = await this.roomService.getById(model.teamId, model.roomId);
-    return BookingTimeView({ room });
+    return DurationPicker({ room });
   }
 
   public async getSlotsPicker(model: BookingDialogModel) {
@@ -43,5 +46,9 @@ export default class BookingDialogService {
 
   public async getAdditionalPropertiesPicker(model: BookingDialogModel) {
     return AdditionalPropertiesView(model);
+  }
+
+  public createAppointment(teamId: string, dto: AppointmentDto) {
+    return this.appointmentService.createAppoinment(teamId, dto);
   }
 }
