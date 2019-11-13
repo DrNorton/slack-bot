@@ -1,8 +1,8 @@
 /** @jsx JSXSlack.h */
 
-import RoomDto from '../../../../api-modules/booking/meetingRooms/rooms/dto/room.dto';
+import RoomDto from '../../../../../../api-modules/booking/meetingRooms/rooms/dto/room.dto';
 import { DatePicker, Divider, Input, JSXSlack, Modal, Option, Section, Select } from '@speee-js/jsx-slack';
-import { RoomFragment } from './roomFragment';
+import { RoomFragment } from './fragments/roomFragment';
 
 interface Props {
   room: RoomDto;
@@ -12,7 +12,7 @@ interface Props {
 export const BookingTimeView = (props: Props) => {
   return JSXSlack(
     <Modal
-      callbackId="booking_select_time"
+      callbackId="booking_selected_time"
       title="Бронирование переговорки"
       close="Закрыть"
     >

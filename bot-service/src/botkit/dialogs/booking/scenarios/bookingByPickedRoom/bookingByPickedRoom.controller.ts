@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { RoomsService } from '../../../api-modules/booking/meetingRooms/rooms/rooms.service';
+import { RoomsService } from '../../../../../api-modules/booking/meetingRooms/rooms/rooms.service';
 import selectRoomView from './views/selectRoomView';
 import { DurationPicker } from './views/durationPicker';
 import SlotsView from './views/slotsView';
-import { AppointmentService } from '../../../api-modules/booking/appointments/appointment.service';
+import { AppointmentService } from '../../../../../api-modules/booking/appointments/appointment.service';
 import AdditionalPropertiesView from './views/additionalPropertiesView';
-import AppointmentDto from '../../../api-modules/booking/appointments/dto/appointment.dto';
+import AppointmentDto from '../../../../../api-modules/booking/appointments/dto/appointment.dto';
+import { ResultView } from './views/resultView';
 
 export interface BookingDialogModel {
   teamId: string;
@@ -14,10 +15,11 @@ export interface BookingDialogModel {
   date?: Date;
   start?: Date;
   end?: Date;
+  responseUrl: string;
 }
 
 @Injectable()
-export default class BookingDialogService {
+export default class BookingByPickedRoomController {
   constructor(
     private readonly roomService: RoomsService,
     private readonly appointmentService: AppointmentService,
@@ -26,12 +28,17 @@ export default class BookingDialogService {
 
   public async getRoomsDialog(model: BookingDialogModel) {
     const rooms = await this.roomService.getAll(model.teamId);
-    return selectRoomView(rooms);
+    return selectRoomView(rooms, model);
   }
 
   public async getDatePicker(model: BookingDialogModel) {
     const room = await this.roomService.getById(model.teamId, model.roomId);
-    return DurationPicker({ room });
+    return DurationPicker({ room, model });
+  }
+
+  public async getResultView(teamId: string, appointment: AppointmentDto) {
+    const room = await this.roomService.getById(teamId, appointment.roomId);
+    return ResultView({ room, appointment });
   }
 
   public async getSlotsPicker(model: BookingDialogModel) {

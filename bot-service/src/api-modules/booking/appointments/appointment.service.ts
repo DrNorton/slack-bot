@@ -20,11 +20,17 @@ export class AppointmentService {
   ): Promise<AppointmentDto> {
     const newAppointment = AppointmentEntity.fromDto(teamId, dto);
     const appointment = await this.appointmentRepository.save(newAppointment);
-    return appointment.toDto();
+    const findedAppointment = await this.appointmentRepository.findOne(
+      { id: appointment.id },
+      { relations: ['members'] },
+    );
+    return findedAppointment.toDto();
   }
 
   public async getAll(teamId: string): Promise<AppointmentDto[]> {
-    const appointments = await this.appointmentRepository.find();
+    const appointments = await this.appointmentRepository.find({
+      relations: ['members'],
+    });
     return appointments.map(appointment => appointment.toDto());
   }
 

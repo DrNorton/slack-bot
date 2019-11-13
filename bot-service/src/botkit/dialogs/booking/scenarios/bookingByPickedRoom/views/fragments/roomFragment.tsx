@@ -1,6 +1,6 @@
 /** @jsx JSXSlack.h */
 
-import RoomDto from '../../../../api-modules/booking/meetingRooms/rooms/dto/room.dto';
+import RoomDto from '../../../../../../../api-modules/booking/meetingRooms/rooms/dto/room.dto';
 import { Field, Fragment, Image, JSXSlack, Section } from '@speee-js/jsx-slack';
 
 interface Props {

@@ -1,12 +1,11 @@
 /** @jsx JSXSlack.h */
 import { Divider, Input, JSXSlack, Modal, Textarea, UsersSelect } from '@speee-js/jsx-slack';
-import { BookingDialogModel } from '../booking.dialog.service';
-import moment = require('moment');
+import { BookingDialogModel } from '../bookingByPickedRoom.controller';
 
 export default function AdditionalPropertiesView(props: BookingDialogModel) {
   return JSXSlack(
     <Modal
-      callbackId="booking_pick_room"
+      callbackId="completed_appointment"
       title="Бронирование переговорки"
       close="Закрыть"
     >
@@ -32,14 +31,10 @@ export default function AdditionalPropertiesView(props: BookingDialogModel) {
       <Input type="hidden" name="date" value={props.date}/>
       <Input type="hidden" name="start" value={props.start}/>
       <Input type="hidden" name="end" value={props.end}/>
+      <Input type="hidden" name="responseUrl" value={props.responseUrl}/>
       <Input blockId="members" label="Участники" title="Участники" required>
         <UsersSelect actionId="membersSelect" multiple/>
       </Input>
     </Modal>,
   );
-}
-
-function getTimeFromDate(date: string) {
-  const dateWithTime = moment(date, 'DD-MM-YYYY HH:mm');
-  return dateWithTime.format('HH:mm');
 }

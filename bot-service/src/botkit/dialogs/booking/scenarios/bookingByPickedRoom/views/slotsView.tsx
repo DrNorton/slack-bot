@@ -1,7 +1,7 @@
 /** @jsx JSXSlack.h */
 import { Actions, Button, Divider, Input, JSXSlack, Modal, Section } from '@speee-js/jsx-slack';
-import { SlotDto } from '../../../../api-modules/booking/appointments/dto/slot.dto';
-import { BookingDialogModel } from '../booking.dialog.service';
+import { SlotDto } from '../../../../../../api-modules/booking/appointments/dto/slot.dto';
+import { BookingDialogModel } from '../bookingByPickedRoom.controller';
 import moment = require('moment');
 
 interface Props {
@@ -23,10 +23,11 @@ export default function SlotsView(props: Props) {
       <Input type="hidden" name="roomId" value={props.model.roomId}/>
       <Input type="hidden" name="duration" value={props.model.duration}/>
       <Input type="hidden" name="date" value={props.model.date}/>
+      <Input type="hidden" name="responseUrl" value={props.model.responseUrl}/>
       <Actions>
         {props.slots.map((slot, index) => (
           <Button
-            actionId={`select_slot_${index}`}
+            actionId={`selected_slot_${index}`}
             value={JSON.stringify(slot)}
           >{`${getTimeFromDate(slot.start)} - ${getTimeFromDate(
             slot.end,

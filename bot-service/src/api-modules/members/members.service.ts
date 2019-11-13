@@ -4,7 +4,6 @@ import { MemberEntity } from './entity/member.entity';
 import { TeamEntity } from '../team/entity/team.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import MemberDto from './dto/member.dto';
 
 @Injectable()
 export class MembersService {
@@ -12,7 +11,8 @@ export class MembersService {
     @InjectRepository(MemberEntity)
     private readonly memberRepository: Repository<MemberEntity>,
     private readonly slackApiService: SlackApiService,
-  ) {}
+  ) {
+  }
 
   public async loadMembers(acessToken: string, teamId: string) {
     const membersFromSlack: any[] = await this.slackApiService.getUsersList(
@@ -39,15 +39,6 @@ export class MembersService {
     const team = new TeamEntity();
     team.id = teamId;
     const members = await this.memberRepository.find({ team });
-    return members.map(member => this.convertEntityToDto(member));
-  }
-
-  private convertEntityToDto(entity: MemberEntity) {
-    const dto = new MemberDto();
-    dto.avatarUrl = entity.avatarUrl;
-    dto.id = entity.id;
-    dto.name = entity.name;
-    dto.realName = entity.realName;
-    return dto;
+    return members.map(member => member.toDto());
   }
 }
