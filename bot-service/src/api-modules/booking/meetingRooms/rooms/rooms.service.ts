@@ -11,12 +11,14 @@ export class RoomsService implements ICrudService<RoomDto> {
   constructor(
     @InjectRepository(RoomEntity)
     private readonly roomRepository: Repository<RoomEntity>,
-  ) {}
+  ) {
+  }
 
   public async deleteItems(teamId: string, ids: number[]): Promise<boolean> {
     await this.roomRepository.delete(ids);
     return true;
   }
+
   public async getAll(teamId: string): Promise<RoomDto[]> {
     const rooms = await this.roomRepository.find({
       relations: ['attributes', 'attributes.attributeType'],
@@ -59,3 +61,4 @@ export class RoomsService implements ICrudService<RoomDto> {
     return insertedRoom.toDto();
   }
 }
+

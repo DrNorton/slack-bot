@@ -1,4 +1,5 @@
 import { ApiModelProperty } from '@nestjs/swagger';
+import MemberDto from '../../../members/dto/member.dto';
 
 export default class AppointmentDto {
   @ApiModelProperty()
@@ -13,4 +14,6 @@ export default class AppointmentDto {
   start: Date;
   @ApiModelProperty()
   end: Date;
+  @ApiModelProperty()
+  members: MemberDto[];
 }

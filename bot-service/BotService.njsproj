@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ac7e9a28-9b74-434a-916d-e1653ce8b448}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectView>ProjectFiles</ProjectView>
+    <StartupFile>src\main.ts</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>true</EnableTypeScript>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <StartWebBrowser>True</StartWebBrowser>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="nest-cli.json" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="tsconfig.build.json" />
+    <None Include="tsconfig.json" />
+    <Content Include="tslint.json" />
+    <Content Include="README.md" />
+    <None Include="dist\app.module.d.ts" />
+    <None Include="dist\env.init.d.ts" />
+    <None Include="dist\main.d.ts" />
+    <Content Include="public\8e4cb2bbc3f5c6105124b91323c10ba109c.png" />
+    <Content Include="public\b86864d5bb6c10e42d3e55b7e26212bc4.png" />
+    <Content Include="public\question.png" />
+    <Content Include="public\37ec670756cec73e282a1cc1f106af24b.jpg" />
+    <Content Include="public\3ab81757d3681528a822ba5c4935c703.jpg" />
+    <None Include="src\app.module.ts" />
+    <None Include="src\env.init.ts" />
+    <None Include="src\main.ts" />
+    <Content Include="test\jest-e2e.json" />
+    <Content Include="test\jest-unit.json" />
+    <None Include="test\app.e2e-spec.ts" />
+    <None Include="test\database.service.ts" />
+    <None Include="test\test.database.module.ts" />
+    <None Include="test\test.utils.ts" />
+    <None Include="dist\api-modules\api.module.d.ts" />
+    <None Include="dist\botkit\botkit.module.d.ts" />
+    <None Include="dist\decorators\user.decorator.d.ts" />
+    <None Include="dist\filters\http.exception.filter.d.ts" />
+    <None Include="dist\interceptors\transform.interceptor.d.ts" />
+    <None Include="dist\internal\internal.module.d.ts" />
+    <None Include="dist\internal\internal.service.d.ts" />
+    <None Include="dist\src\app.module.d.ts" />
+    <None Include="dist\src\env.init.d.ts" />
+    <None Include="dist\src\main.d.ts" />
+    <None Include="dist\test\app.e2e-spec.d.ts" />
+    <None Include="dist\test\database.service.d.ts" />
+    <None Include="dist\test\test.database.module.d.ts" />
+    <None Include="dist\test\test.utils.d.ts" />
+    <None Include="dist\utils\dateUtils.d.ts" />
+    <None Include="dist\utils\mrkdwnConverter.d.ts" />
+    <None Include="dist\api-modules\auth\auth.module.d.ts" />
+    <None Include="dist\api-modules\auth\auth.service.d.ts" />
+    <None Include="dist\api-modules\auth\jwt.strategy.d.ts" />
+    <None Include="dist\api-modules\base\base.api.response.d.ts" />
+    <None Include="dist\api-modules\base\base.controller.d.ts" />
+    <None Include="dist\api-modules\base\base.crud.controller.d.ts" />
+    <None Include="dist\api-modules\base\crud.interface.service.d.ts" />
+    <None Include="dist\api-modules\booking\booking.module.d.ts" />
+    <None Include="dist\api-modules\emoji\emoji.controller.d.ts" />
+    <None Include="dist\api-modules\emoji\emoji.module.d.ts" />
+    <None Include="dist\api-modules\emoji\emoji.service.d.ts" />
+    <None Include="dist\api-modules\emoji\emoji.storage.d.ts" />
+    <None Include="dist\api-modules\faq\faq.controller.d.ts" />
+    <None Include="dist\api-modules\faq\faq.module.d.ts" />
+    <None Include="dist\api-modules\faq\faq.service.d.ts" />
+    <None Include="dist\api-modules\image\image.controller.d.ts" />
+    <None Include="dist\api-modules\image\image.module.d.ts" />
+    <None Include="dist\api-modules\image\image.service.d.ts" />
+    <None Include="dist\api-modules\install\install.controller.d.ts" />
+    <None Include="dist\api-modules\install\install.module.d.ts" />
+    <None Include="dist\api-modules\install\install.service.d.ts" />
+    <None Include="dist\api-modules\members\members.module.d.ts" />
+    <None Include="dist\api-modules\members\members.service.d.ts" />
+    <None Include="dist\api-modules\members\members.storage.d.ts" />
+    <None Include="dist\api-modules\score\score.controller.d.ts" />
+    <None Include="dist\api-modules\score\score.module.d.ts" />
+    <None Include="dist\api-modules\score\score.service.d.ts" />
+    <None Include="dist\api-modules\team\team.module.d.ts" />
+    <None Include="dist\api-modules\team\team.service.d.ts" />
+    <None Include="dist\api-modules\user\user.controller.d.ts" />
+    <None Include="dist\api-modules\user\user.module.d.ts" />
+    <None Include="dist\api-modules\user\user.service.d.ts" />
+    <None Include="dist\api-modules\booking\appointments\appointment.controller.d.ts" />
+    <None Include="dist\api-modules\booking\appointments\appointment.module.d.ts" />
+    <None Include="dist\api-modules\booking\appointments\appointment.service.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\meetingRooms.module.d.ts" />
+    <None Include="dist\api-modules\booking\appointments\dto\appointment.dto.d.ts" />
+    <None Include="dist\api-modules\booking\appointments\dto\slot.dto.d.ts" />
+    <None Include="dist\api-modules\booking\appointments\entity\appointment.entity.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\attributes\roomAttribute.service.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\attributeTypes\roomAttributeType.service.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\attributeTypes\roomAttributeTypes.controller.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\rooms\room.controller.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\rooms\rooms.service.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\attributes\dto\roomAttribute.dto.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\attributes\entity\roomAttribute.entity.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\attributeTypes\dto\roomAttributeTypeDto.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\attributeTypes\entity\room.attributeType.entity.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\rooms\dto\room.dto.d.ts" />
+    <None Include="dist\api-modules\booking\meetingRooms\rooms\entity\room.entity.d.ts" />
+    <None Include="dist\api-modules\emoji\dto\emoji.dto.d.ts" />
+    <None Include="dist\api-modules\emoji\entity\emoji.entity.d.ts" />
+    <None Include="dist\api-modules\faq\dto\faqItem.dto.d.ts" />
+    <None Include="dist\api-modules\faq\dto\question.dto.d.ts" />
+    <None Include="dist\api-modules\faq\entity\answer.entity.d.ts" />
+    <None Include="dist\api-modules\faq\entity\question.entity.d.ts" />
+    <None Include="dist\api-modules\image\dto\image.dto.d.ts" />
+    <None Include="dist\api-modules\image\entity\image.entity.d.ts" />
+    <None Include="dist\api-modules\install\dto\install.dto.d.ts" />
+    <None Include="dist\api-modules\install\dto\installedUser.dto.d.ts" />
+    <None Include="dist\api-modules\members\dto\member.dto.d.ts" />
+    <None Include="dist\api-modules\members\entity\member.entity.d.ts" />
+    <None Include="dist\api-modules\score\dto\periodType.enum.d.ts" />
+    <None Include="dist\api-modules\score\dto\weekTopItem.dto.d.ts" />
+    <None Include="dist\api-modules\team\dto\team.dto.d.ts" />
+    <None Include="dist\api-modules\team\entity\team.entity.d.ts" />
+    <None Include="dist\api-modules\user\dto\user.dto.d.ts" />
+    <None Include="dist\api-modules\user\entity\user.entity.d.ts" />
+    <None Include="dist\botkit\common\common.bot.connector.d.ts" />
+    <None Include="dist\botkit\common\common.bot.module.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\booking.dialog.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\booking.dialog.module.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\booking.dialog.service.d.ts" />
+    <None Include="dist\botkit\dialogs\faq\faq.dialog.d.ts" />
+    <None Include="dist\botkit\dialogs\faq\faq.dialog.service.d.ts" />
+    <None Include="dist\botkit\dialogs\faq\faqDialog.module.d.ts" />
+    <None Include="dist\botkit\dialogs\reaction\reaction.dialog.d.ts" />
+    <None Include="dist\botkit\dialogs\reaction\reaction.module.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\views\additionalPropertiesView.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\views\bookingTimeView.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\views\roomFragment.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\views\selectRoomView.d.ts" />
+    <None Include="dist\botkit\dialogs\booking\views\slotsView.d.ts" />
+    <None Include="dist\botkit\dialogs\faq\views\faq.view.d.ts" />
+    <None Include="dist\internal\clickhouse\clickhouse.module.d.ts" />
+    <None Include="dist\internal\clickhouse\clickhouse.service.d.ts" />
+    <None Include="dist\internal\slack-api\slack.api.module.d.ts" />
+    <None Include="dist\internal\slack-api\slack.api.service.d.ts" />
+    <None Include="dist\internal\clickhouse\dto\presentPoint.dto.d.ts" />
+    <None Include="dist\internal\clickhouse\dto\scoresByUserId.dto.d.ts" />
+    <None Include="dist\models\slack\BaseBlock.d.ts" />
+    <None Include="dist\models\slack\BlockAction.d.ts" />
+    <None Include="dist\models\slack\BlockDivider.d.ts" />
+    <None Include="dist\models\slack\BlockInput.d.ts" />
+    <None Include="dist\models\slack\BlockSection.d.ts" />
+    <None Include="dist\models\slack\BlockText.d.ts" />
+    <None Include="dist\models\slack\BlockTextTypes.d.ts" />
+    <None Include="dist\models\slack\Modal.d.ts" />
+    <None Include="dist\models\slack\elements\BlockBaseElement.d.ts" />
+    <None Include="dist\models\slack\elements\BlockButtonElement.d.ts" />
+    <None Include="dist\models\slack\elements\BlockDatePicker.d.ts" />
+    <None Include="dist\models\slack\elements\ConfirmDialogElement.d.ts" />
+    <None Include="dist\models\slack\elements\ImageElement.d.ts" />
+    <None Include="dist\models\slack\elements\StaticSelect.d.ts" />
+    <None Include="dist\src\api-modules\api.module.d.ts" />
+    <None Include="dist\src\botkit\botkit.module.d.ts" />
+    <None Include="dist\src\decorators\user.decorator.d.ts" />
+    <None Include="dist\src\filters\http.exception.filter.d.ts" />
+    <None Include="dist\src\interceptors\transform.interceptor.d.ts" />
+    <None Include="dist\src\internal\internal.module.d.ts" />
+    <None Include="dist\src\internal\internal.service.d.ts" />
+    <None Include="dist\src\utils\dateUtils.d.ts" />
+    <None Include="dist\src\utils\mrkdwnConverter.d.ts" />
+    <None Include="dist\src\api-modules\auth\auth.module.d.ts" />
+    <None Include="dist\src\api-modules\auth\auth.service.d.ts" />
+    <None Include="dist\src\api-modules\auth\jwt.strategy.d.ts" />
+    <None Include="dist\src\api-modules\base\base.api.response.d.ts" />
+    <None Include="dist\src\api-modules\base\base.controller.d.ts" />
+    <None Include="dist\src\api-modules\base\base.crud.controller.d.ts" />
+    <None Include="dist\src\api-modules\base\crud.interface.service.d.ts" />
+    <None Include="dist\src\api-modules\booking\booking.module.d.ts" />
+    <None Include="dist\src\api-modules\emoji\emoji.controller.d.ts" />
+    <None Include="dist\src\api-modules\emoji\emoji.module.d.ts" />
+    <None Include="dist\src\api-modules\emoji\emoji.service.d.ts" />
+    <None Include="dist\src\api-modules\emoji\emoji.storage.d.ts" />
+    <None Include="dist\src\api-modules\faq\faq.controller.d.ts" />
+    <None Include="dist\src\api-modules\faq\faq.module.d.ts" />
+    <None Include="dist\src\api-modules\faq\faq.service.d.ts" />
+    <None Include="dist\src\api-modules\image\image.controller.d.ts" />
+    <None Include="dist\src\api-modules\image\image.module.d.ts" />
+    <None Include="dist\src\api-modules\image\image.service.d.ts" />
+    <None Include="dist\src\api-modules\install\install.controller.d.ts" />
+    <None Include="dist\src\api-modules\install\install.module.d.ts" />
+    <None Include="dist\src\api-modules\install\install.service.d.ts" />
+    <None Include="dist\src\api-modules\members\members.module.d.ts" />
+    <None Include="dist\src\api-modules\members\members.service.d.ts" />
+    <None Include="dist\src\api-modules\members\members.storage.d.ts" />
+    <None Include="dist\src\api-modules\score\score.controller.d.ts" />
+    <None Include="dist\src\api-modules\score\score.module.d.ts" />
+    <None Include="dist\src\api-modules\score\score.service.d.ts" />
+    <None Include="dist\src\api-modules\team\team.module.d.ts" />
+    <None Include="dist\src\api-modules\team\team.service.d.ts" />
+    <None Include="dist\src\api-modules\user\user.controller.d.ts" />
+    <None Include="dist\src\api-modules\user\user.module.d.ts" />
+    <None Include="dist\src\api-modules\user\user.service.d.ts" />
+    <None Include="dist\src\api-modules\booking\appointments\appointment.controller.d.ts" />
+    <None Include="dist\src\api-modules\booking\appointments\appointment.module.d.ts" />
+    <None Include="dist\src\api-modules\booking\appointments\appointment.service.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\meetingRooms.module.d.ts" />
+    <None Include="dist\src\api-modules\booking\appointments\dto\appointment.dto.d.ts" />
+    <None Include="dist\src\api-modules\booking\appointments\dto\slot.dto.d.ts" />
+    <None Include="dist\src\api-modules\booking\appointments\entity\appointment.entity.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\attributes\roomAttribute.service.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\attributeTypes\roomAttributeType.service.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\attributeTypes\roomAttributeTypes.controller.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\rooms\room.controller.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\rooms\rooms.service.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\tests\attribute.service.spec.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\tests\attributeTypes.service.spec.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\tests\rooms.service.spec.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\attributes\dto\roomAttribute.dto.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\attributes\entity\roomAttribute.entity.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\attributeTypes\dto\roomAttributeTypeDto.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\attributeTypes\entity\room.attributeType.entity.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\rooms\dto\room.dto.d.ts" />
+    <None Include="dist\src\api-modules\booking\meetingRooms\rooms\entity\room.entity.d.ts" />
+    <None Include="dist\src\api-modules\emoji\dto\emoji.dto.d.ts" />
+    <None Include="dist\src\api-modules\emoji\entity\emoji.entity.d.ts" />
+    <None Include="dist\src\api-modules\faq\dto\faqItem.dto.d.ts" />
+    <None Include="dist\src\api-modules\faq\dto\question.dto.d.ts" />
+    <None Include="dist\src\api-modules\faq\entity\answer.entity.d.ts" />
+    <None Include="dist\src\api-modules\faq\entity\question.entity.d.ts" />
+    <None Include="dist\src\api-modules\image\dto\image.dto.d.ts" />
+    <None Include="dist\src\api-modules\image\entity\image.entity.d.ts" />
+    <None Include="dist\src\api-modules\install\dto\install.dto.d.ts" />
+    <None Include="dist\src\api-modules\install\dto\installedUser.dto.d.ts" />
+    <None Include="dist\src\api-modules\members\dto\member.dto.d.ts" />
+    <None Include="dist\src\api-modules\members\entity\member.entity.d.ts" />
+    <None Include="dist\src\api-modules\score\dto\periodType.enum.d.ts" />
+    <None Include="dist\src\api-modules\score\dto\weekTopItem.dto.d.ts" />
+    <None Include="dist\src\api-modules\team\dto\team.dto.d.ts" />
+    <None Include="dist\src\api-modules\team\entity\team.entity.d.ts" />
+    <None Include="dist\src\api-modules\user\dto\user.dto.d.ts" />
+    <None Include="dist\src\api-modules\user\entity\user.entity.d.ts" />
+    <None Include="dist\src\botkit\common\common.bot.connector.d.ts" />
+    <None Include="dist\src\botkit\common\common.bot.module.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\booking.dialog.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\booking.dialog.module.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\booking.dialog.service.d.ts" />
+    <None Include="dist\src\botkit\dialogs\faq\faq.dialog.d.ts" />
+    <None Include="dist\src\botkit\dialogs\faq\faq.dialog.service.d.ts" />
+    <None Include="dist\src\botkit\dialogs\faq\faqDialog.module.d.ts" />
+    <None Include="dist\src\botkit\dialogs\reaction\reaction.dialog.d.ts" />
+    <None Include="dist\src\botkit\dialogs\reaction\reaction.module.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\views\additionalPropertiesView.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\views\bookingTimeView.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\views\roomFragment.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\views\selectRoomView.d.ts" />
+    <None Include="dist\src\botkit\dialogs\booking\views\slotsView.d.ts" />
+    <None Include="dist\src\botkit\dialogs\faq\views\faq.view.d.ts" />
+    <None Include="dist\src\internal\clickhouse\clickhouse.module.d.ts" />
+    <None Include="dist\src\internal\clickhouse\clickhouse.service.d.ts" />
+    <None Include="dist\src\internal\slack-api\slack.api.module.d.ts" />
+    <None Include="dist\src\internal\slack-api\slack.api.service.d.ts" />
+    <None Include="dist\src\internal\clickhouse\dto\presentPoint.dto.d.ts" />
+    <None Include="dist\src\internal\clickhouse\dto\scoresByUserId.dto.d.ts" />
+    <None Include="dist\src\models\slack\BaseBlock.d.ts" />
+    <None Include="dist\src\models\slack\BlockAction.d.ts" />
+    <None Include="dist\src\models\slack\BlockDivider.d.ts" />
+    <None Include="dist\src\models\slack\BlockInput.d.ts" />
+    <None Include="dist\src\models\slack\BlockSection.d.ts" />
+    <None Include="dist\src\models\slack\BlockText.d.ts" />
+    <None Include="dist\src\models\slack\BlockTextTypes.d.ts" />
+    <None Include="dist\src\models\slack\Modal.d.ts" />
+    <None Include="dist\src\models\slack\elements\BlockBaseElement.d.ts" />
+    <None Include="dist\src\models\slack\elements\BlockButtonElement.d.ts" />
+    <None Include="dist\src\models\slack\elements\BlockDatePicker.d.ts" />
+    <None Include="dist\src\models\slack\elements\ConfirmDialogElement.d.ts" />
+    <None Include="dist\src\models\slack\elements\ImageElement.d.ts" />
+    <None Include="dist\src\models\slack\elements\StaticSelect.d.ts" />
+    <None Include="src\api-modules\api.module.ts" />
+    <None Include="src\botkit\botkit.module.ts" />
+    <None Include="src\decorators\user.decorator.ts" />
+    <None Include="src\filters\http.exception.filter.ts" />
+    <None Include="src\interceptors\transform.interceptor.ts" />
+    <None Include="src\internal\internal.module.ts" />
+    <None Include="src\internal\internal.service.ts" />
+    <None Include="src\utils\dateUtils.ts" />
+    <None Include="src\utils\mrkdwnConverter.ts" />
+    <None Include="src\api-modules\auth\auth.module.ts" />
+    <None Include="src\api-modules\auth\auth.service.ts" />
+    <None Include="src\api-modules\auth\jwt.strategy.ts" />
+    <None Include="src\api-modules\base\base.api.response.ts" />
+    <None Include="src\api-modules\base\base.controller.ts" />
+    <None Include="src\api-modules\base\base.crud.controller.ts" />
+    <None Include="src\api-modules\base\crud.interface.service.ts" />
+    <None Include="src\api-modules\booking\booking.module.ts" />
+    <None Include="src\api-modules\emoji\emoji.controller.ts" />
+    <None Include="src\api-modules\emoji\emoji.module.ts" />
+    <None Include="src\api-modules\emoji\emoji.service.ts" />
+    <None Include="src\api-modules\emoji\emoji.storage.ts" />
+    <None Include="src\api-modules\faq\faq.controller.ts" />
+    <None Include="src\api-modules\faq\faq.module.ts" />
+    <None Include="src\api-modules\faq\faq.service.ts" />
+    <None Include="src\api-modules\image\image.controller.ts" />
+    <None Include="src\api-modules\image\image.module.ts" />
+    <None Include="src\api-modules\image\image.service.ts" />
+    <None Include="src\api-modules\install\install.controller.ts" />
+    <None Include="src\api-modules\install\install.module.ts" />
+    <None Include="src\api-modules\install\install.service.ts" />
+    <None Include="src\api-modules\members\members.module.ts" />
+    <None Include="src\api-modules\members\members.service.ts" />
+    <None Include="src\api-modules\members\members.storage.ts" />
+    <None Include="src\api-modules\score\score.controller.ts" />
+    <None Include="src\api-modules\score\score.module.ts" />
+    <None Include="src\api-modules\score\score.service.ts" />
+    <None Include="src\api-modules\team\team.module.ts" />
+    <None Include="src\api-modules\team\team.service.ts" />
+    <None Include="src\api-modules\user\user.controller.ts" />
+    <None Include="src\api-modules\user\user.module.ts" />
+    <None Include="src\api-modules\user\user.service.ts" />
+    <None Include="src\api-modules\booking\appointments\appointment.controller.ts" />
+    <None Include="src\api-modules\booking\appointments\appointment.module.ts" />
+    <None Include="src\api-modules\booking\appointments\appointment.service.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\meetingRooms.module.ts" />
+    <None Include="src\api-modules\booking\appointments\dto\appointment.dto.ts" />
+    <None Include="src\api-modules\booking\appointments\dto\slot.dto.ts" />
+    <None Include="src\api-modules\booking\appointments\entity\appointment.entity.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\attributes\roomAttribute.service.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\attributeTypes\roomAttributeType.service.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\attributeTypes\roomAttributeTypes.controller.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\rooms\room.controller.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\rooms\rooms.service.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\tests\attribute.service.spec.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\tests\attributeTypes.service.spec.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\tests\rooms.service.spec.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\attributes\dto\roomAttribute.dto.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\attributes\entity\roomAttribute.entity.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\attributeTypes\dto\roomAttributeTypeDto.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\attributeTypes\entity\room.attributeType.entity.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\rooms\dto\room.dto.ts" />
+    <None Include="src\api-modules\booking\meetingRooms\rooms\entity\room.entity.ts" />
+    <None Include="src\api-modules\emoji\dto\emoji.dto.ts" />
+    <None Include="src\api-modules\emoji\entity\emoji.entity.ts" />
+    <None Include="src\api-modules\faq\dto\faqItem.dto.ts" />
+    <None Include="src\api-modules\faq\dto\question.dto.ts" />
+    <None Include="src\api-modules\faq\entity\answer.entity.ts" />
+    <None Include="src\api-modules\faq\entity\question.entity.ts" />
+    <None Include="src\api-modules\image\dto\image.dto.ts" />
+    <None Include="src\api-modules\image\entity\image.entity.ts" />
+    <None Include="src\api-modules\install\dto\install.dto.ts" />
+    <None Include="src\api-modules\install\dto\installedUser.dto.ts" />
+    <None Include="src\api-modules\members\dto\member.dto.ts" />
+    <None Include="src\api-modules\members\entity\member.entity.ts" />
+    <None Include="src\api-modules\score\dto\periodType.enum.ts" />
+    <None Include="src\api-modules\score\dto\weekTopItem.dto.ts" />
+    <None Include="src\api-modules\team\dto\team.dto.ts" />
+    <None Include="src\api-modules\team\entity\team.entity.ts" />
+    <None Include="src\api-modules\user\dto\user.dto.ts" />
+    <None Include="src\api-modules\user\entity\user.entity.ts" />
+    <None Include="src\botkit\common\common.bot.connector.ts" />
+    <None Include="src\botkit\common\common.bot.module.ts" />
+    <None Include="src\botkit\dialogs\booking\booking.dialog.module.ts" />
+    <None Include="src\botkit\dialogs\booking\booking.dialog.service.ts" />
+    <None Include="src\botkit\dialogs\booking\booking.dialog.ts" />
+    <None Include="src\botkit\dialogs\faq\faq.dialog.service.ts" />
+    <None Include="src\botkit\dialogs\faq\faq.dialog.ts" />
+    <None Include="src\botkit\dialogs\faq\faqDialog.module.ts" />
+    <None Include="src\botkit\dialogs\reaction\reaction.dialog.ts" />
+    <None Include="src\botkit\dialogs\reaction\reaction.module.ts" />
+    <None Include="src\botkit\dialogs\booking\views\additionalPropertiesView.tsx" />
+    <None Include="src\botkit\dialogs\booking\views\bookingTimeView.tsx" />
+    <None Include="src\botkit\dialogs\booking\views\roomFragment.tsx" />
+    <None Include="src\botkit\dialogs\booking\views\selectRoomView.tsx" />
+    <None Include="src\botkit\dialogs\booking\views\slotsView.tsx" />
+    <None Include="src\botkit\dialogs\faq\views\faq.view.tsx" />
+    <None Include="src\internal\clickhouse\clickhouse.module.ts" />
+    <None Include="src\internal\clickhouse\clickhouse.service.ts" />
+    <None Include="src\internal\slack-api\slack.api.module.ts" />
+    <None Include="src\internal\slack-api\slack.api.service.ts" />
+    <None Include="src\internal\clickhouse\dto\presentPoint.dto.ts" />
+    <None Include="src\internal\clickhouse\dto\scoresByUserId.dto.ts" />
+    <None Include="src\models\slack\BaseBlock.ts" />
+    <None Include="src\models\slack\BlockAction.ts" />
+    <None Include="src\models\slack\BlockDivider.ts" />
+    <None Include="src\models\slack\BlockInput.ts" />
+    <None Include="src\models\slack\BlockSection.ts" />
+    <None Include="src\models\slack\BlockText.ts" />
+    <None Include="src\models\slack\BlockTextTypes.ts" />
+    <None Include="src\models\slack\Modal.ts" />
+    <None Include="src\models\slack\elements\BlockBaseElement.ts" />
+    <None Include="src\models\slack\elements\BlockButtonElement.ts" />
+    <None Include="src\models\slack\elements\BlockDatePicker.ts" />
+    <None Include="src\models\slack\elements\ConfirmDialogElement.ts" />
+    <None Include="src\models\slack\elements\ImageElement.ts" />
+    <None Include="src\models\slack\elements\StaticSelect.ts" />
+    <Content Include="test\fixtures\RoomAttributeTypeEntity.json" />
+    <Content Include="test\fixtures\RoomEntity.json" />
+    <Content Include="test\fixtures\TeamEntity.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dist" />
+    <Folder Include="dist\api-modules" />
+    <Folder Include="dist\api-modules\auth" />
+    <Folder Include="dist\api-modules\base" />
+    <Folder Include="dist\api-modules\booking" />
+    <Folder Include="dist\api-modules\booking\appointments" />
+    <Folder Include="dist\api-modules\booking\appointments\dto" />
+    <Folder Include="dist\api-modules\booking\appointments\entity" />
+    <Folder Include="dist\api-modules\booking\meetingRooms" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\attributes" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\attributes\dto" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\attributes\entity" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\attributeTypes" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\attributeTypes\dto" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\attributeTypes\entity" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\rooms" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\rooms\dto" />
+    <Folder Include="dist\api-modules\booking\meetingRooms\rooms\entity" />
+    <Folder Include="dist\api-modules\emoji" />
+    <Folder Include="dist\api-modules\emoji\dto" />
+    <Folder Include="dist\api-modules\emoji\entity" />
+    <Folder Include="dist\api-modules\faq" />
+    <Folder Include="dist\api-modules\faq\dto" />
+    <Folder Include="dist\api-modules\faq\entity" />
+    <Folder Include="dist\api-modules\image" />
+    <Folder Include="dist\api-modules\image\dto" />
+    <Folder Include="dist\api-modules\image\entity" />
+    <Folder Include="dist\api-modules\install" />
+    <Folder Include="dist\api-modules\install\dto" />
+    <Folder Include="dist\api-modules\members" />
+    <Folder Include="dist\api-modules\members\dto" />
+    <Folder Include="dist\api-modules\members\entity" />
+    <Folder Include="dist\api-modules\score" />
+    <Folder Include="dist\api-modules\score\dto" />
+    <Folder Include="dist\api-modules\team" />
+    <Folder Include="dist\api-modules\team\dto" />
+    <Folder Include="dist\api-modules\team\entity" />
+    <Folder Include="dist\api-modules\user" />
+    <Folder Include="dist\api-modules\user\dto" />
+    <Folder Include="dist\api-modules\user\entity" />
+    <Folder Include="dist\botkit" />
+    <Folder Include="dist\botkit\common" />
+    <Folder Include="dist\botkit\dialogs" />
+    <Folder Include="dist\botkit\dialogs\booking" />
+    <Folder Include="dist\botkit\dialogs\booking\views" />
+    <Folder Include="dist\botkit\dialogs\faq" />
+    <Folder Include="dist\botkit\dialogs\faq\views" />
+    <Folder Include="dist\botkit\dialogs\reaction" />
+    <Folder Include="dist\decorators" />
+    <Folder Include="dist\filters" />
+    <Folder Include="dist\interceptors" />
+    <Folder Include="dist\internal" />
+    <Folder Include="dist\internal\clickhouse" />
+    <Folder Include="dist\internal\clickhouse\dto" />
+    <Folder Include="dist\internal\slack-api" />
+    <Folder Include="dist\models" />
+    <Folder Include="dist\models\slack" />
+    <Folder Include="dist\models\slack\elements" />
+    <Folder Include="dist\src" />
+    <Folder Include="dist\src\api-modules" />
+    <Folder Include="dist\src\api-modules\auth" />
+    <Folder Include="dist\src\api-modules\base" />
+    <Folder Include="dist\src\api-modules\booking" />
+    <Folder Include="dist\src\api-modules\booking\appointments" />
+    <Folder Include="dist\src\api-modules\booking\appointments\dto" />
+    <Folder Include="dist\src\api-modules\booking\appointments\entity" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\attributes" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\attributes\dto" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\attributes\entity" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\attributeTypes" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\attributeTypes\dto" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\attributeTypes\entity" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\rooms" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\rooms\dto" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\rooms\entity" />
+    <Folder Include="dist\src\api-modules\booking\meetingRooms\tests" />
+    <Folder Include="dist\src\api-modules\emoji" />
+    <Folder Include="dist\src\api-modules\emoji\dto" />
+    <Folder Include="dist\src\api-modules\emoji\entity" />
+    <Folder Include="dist\src\api-modules\faq" />
+    <Folder Include="dist\src\api-modules\faq\dto" />
+    <Folder Include="dist\src\api-modules\faq\entity" />
+    <Folder Include="dist\src\api-modules\image" />
+    <Folder Include="dist\src\api-modules\image\dto" />
+    <Folder Include="dist\src\api-modules\image\entity" />
+    <Folder Include="dist\src\api-modules\install" />
+    <Folder Include="dist\src\api-modules\install\dto" />
+    <Folder Include="dist\src\api-modules\members" />
+    <Folder Include="dist\src\api-modules\members\dto" />
+    <Folder Include="dist\src\api-modules\members\entity" />
+    <Folder Include="dist\src\api-modules\score" />
+    <Folder Include="dist\src\api-modules\score\dto" />
+    <Folder Include="dist\src\api-modules\team" />
+    <Folder Include="dist\src\api-modules\team\dto" />
+    <Folder Include="dist\src\api-modules\team\entity" />
+    <Folder Include="dist\src\api-modules\user" />
+    <Folder Include="dist\src\api-modules\user\dto" />
+    <Folder Include="dist\src\api-modules\user\entity" />
+    <Folder Include="dist\src\botkit" />
+    <Folder Include="dist\src\botkit\common" />
+    <Folder Include="dist\src\botkit\dialogs" />
+    <Folder Include="dist\src\botkit\dialogs\booking" />
+    <Folder Include="dist\src\botkit\dialogs\booking\views" />
+    <Folder Include="dist\src\botkit\dialogs\faq" />
+    <Folder Include="dist\src\botkit\dialogs\faq\views" />
+    <Folder Include="dist\src\botkit\dialogs\reaction" />
+    <Folder Include="dist\src\decorators" />
+    <Folder Include="dist\src\filters" />
+    <Folder Include="dist\src\interceptors" />
+    <Folder Include="dist\src\internal" />
+    <Folder Include="dist\src\internal\clickhouse" />
+    <Folder Include="dist\src\internal\clickhouse\dto" />
+    <Folder Include="dist\src\internal\slack-api" />
+    <Folder Include="dist\src\models" />
+    <Folder Include="dist\src\models\slack" />
+    <Folder Include="dist\src\models\slack\elements" />
+    <Folder Include="dist\src\utils" />
+    <Folder Include="dist\test" />
+    <Folder Include="dist\utils" />
+    <Folder Include="docker" />
+    <Folder Include="public" />
+    <Folder Include="src" />
+    <Folder Include="src\api-modules" />
+    <Folder Include="src\api-modules\auth" />
+    <Folder Include="src\api-modules\base" />
+    <Folder Include="src\api-modules\booking" />
+    <Folder Include="src\api-modules\booking\appointments" />
+    <Folder Include="src\api-modules\booking\appointments\dto" />
+    <Folder Include="src\api-modules\booking\appointments\entity" />
+    <Folder Include="src\api-modules\booking\meetingRooms" />
+    <Folder Include="src\api-modules\booking\meetingRooms\attributes" />
+    <Folder Include="src\api-modules\booking\meetingRooms\attributes\dto" />
+    <Folder Include="src\api-modules\booking\meetingRooms\attributes\entity" />
+    <Folder Include="src\api-modules\booking\meetingRooms\attributeTypes" />
+    <Folder Include="src\api-modules\booking\meetingRooms\attributeTypes\dto" />
+    <Folder Include="src\api-modules\booking\meetingRooms\attributeTypes\entity" />
+    <Folder Include="src\api-modules\booking\meetingRooms\rooms" />
+    <Folder Include="src\api-modules\booking\meetingRooms\rooms\dto" />
+    <Folder Include="src\api-modules\booking\meetingRooms\rooms\entity" />
+    <Folder Include="src\api-modules\booking\meetingRooms\tests" />
+    <Folder Include="src\api-modules\emoji" />
+    <Folder Include="src\api-modules\emoji\dto" />
+    <Folder Include="src\api-modules\emoji\entity" />
+    <Folder Include="src\api-modules\faq" />
+    <Folder Include="src\api-modules\faq\dto" />
+    <Folder Include="src\api-modules\faq\entity" />
+    <Folder Include="src\api-modules\image" />
+    <Folder Include="src\api-modules\image\dto" />
+    <Folder Include="src\api-modules\image\entity" />
+    <Folder Include="src\api-modules\install" />
+    <Folder Include="src\api-modules\install\dto" />
+    <Folder Include="src\api-modules\members" />
+    <Folder Include="src\api-modules\members\dto" />
+    <Folder Include="src\api-modules\members\entity" />
+    <Folder Include="src\api-modules\score" />
+    <Folder Include="src\api-modules\score\dto" />
+    <Folder Include="src\api-modules\team" />
+    <Folder Include="src\api-modules\team\dto" />
+    <Folder Include="src\api-modules\team\entity" />
+    <Folder Include="src\api-modules\user" />
+    <Folder Include="src\api-modules\user\dto" />
+    <Folder Include="src\api-modules\user\entity" />
+    <Folder Include="src\botkit" />
+    <Folder Include="src\botkit\common" />
+    <Folder Include="src\botkit\dialogs" />
+    <Folder Include="src\botkit\dialogs\booking" />
+    <Folder Include="src\botkit\dialogs\booking\views" />
+    <Folder Include="src\botkit\dialogs\faq" />
+    <Folder Include="src\botkit\dialogs\faq\views" />
+    <Folder Include="src\botkit\dialogs\reaction" />
+    <Folder Include="src\decorators" />
+    <Folder Include="src\filters" />
+    <Folder Include="src\interceptors" />
+    <Folder Include="src\internal" />
+    <Folder Include="src\internal\clickhouse" />
+    <Folder Include="src\internal\clickhouse\dto" />
+    <Folder Include="src\internal\slack-api" />
+    <Folder Include="src\models" />
+    <Folder Include="src\models\slack" />
+    <Folder Include="src\models\slack\elements" />
+    <Folder Include="src\utils" />
+    <Folder Include="test" />
+    <Folder Include="test\fixtures" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

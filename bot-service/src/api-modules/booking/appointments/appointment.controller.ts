@@ -1,6 +1,5 @@
 import { ApiBearerAuth, ApiOperation, ApiUseTags } from '@nestjs/swagger';
 import { Body, Controller, Get, Param, Put, UseGuards } from '@nestjs/common';
-import { BaseCrudController } from '../../base/base.crud.controller';
 import { AppointmentService } from './appointment.service';
 import AppointmentDto from './dto/appointment.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -8,6 +7,7 @@ import { User } from '../../../decorators/user.decorator';
 import InstalledUserDto from '../../install/dto/installedUser.dto';
 import BaseApiResponse from '../../base/base.api.response';
 import { BaseController } from '../../base/base.controller';
+import { SlotDto } from './dto/slot.dto';
 
 @ApiBearerAuth()
 @ApiUseTags('appointment')
@@ -43,12 +43,19 @@ export default class AppointmentController extends BaseController {
 
   @UseGuards(AuthGuard('jwt'))
   @ApiOperation({ title: 'Получить слоты' })
-  @Get('/slots/:period')
+  @Get('/slots/:date/:period')
   public async getSlots(
     @User() user: InstalledUserDto,
+    @Param('roomId') roomId: number,
+    @Param('date') date: Date,
     @Param('period') period: number,
-  ): Promise<BaseApiResponse<AppointmentDto[]>> {
-    const result = await this.appointmentService.getSlots(user.teamId, period);
+  ): Promise<BaseApiResponse<SlotDto[]>> {
+    const result = await this.appointmentService.getSlots(
+      user.teamId,
+      roomId,
+      date,
+      period,
+    );
     return this.successResponse(result);
   }
 }

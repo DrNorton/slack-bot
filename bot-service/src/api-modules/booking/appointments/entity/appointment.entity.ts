@@ -1,8 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { TeamEntity } from '../../../team/entity/team.entity';
 import { RoomEntity } from '../../meetingRooms/rooms/entity/room.entity';
-import { RoomAttributeDto } from '../../meetingRooms/attributes/dto/roomAttribute.dto';
 import AppointmentDto from '../dto/appointment.dto';
+import { MemberEntity } from '../../../members/entity/member.entity';
 
 @Entity('appointment')
 export class AppointmentEntity {
@@ -18,7 +18,9 @@ export class AppointmentEntity {
   @Column({ nullable: false })
   roomId: number;
 
-
+  @ManyToMany(type => MemberEntity)
+  @JoinTable()
+  members: MemberEntity[];
 
   @ManyToOne(type => RoomEntity, team => team.appointments)
   room: RoomEntity;
@@ -43,6 +45,9 @@ export class AppointmentEntity {
     appointmentDto.roomId = this.roomId;
     appointmentDto.title = this.title;
     appointmentDto.desc = this.desc;
+    appointmentDto.members = this.members
+      ? this.members.map(x => x.toDto())
+      : [];
     return appointmentDto;
   }
 
@@ -54,6 +59,9 @@ export class AppointmentEntity {
     appointmentEntity.teamId = teamId;
     appointmentEntity.start = dto.start;
     appointmentEntity.end = dto.end;
+    appointmentEntity.members = dto.members.map(memberDto =>
+      MemberEntity.fromDto(teamId, memberDto),
+    );
     return appointmentEntity;
   }
 }
