@@ -1,0 +1,2 @@
+C:\workspace\work\bot-project\bot-service\obj\Debug\BotService.njsprojAssemblyReference.cache
+C:\workspace\work\bot-project\bot-service\bin\Microsoft.NodejsTools.WebRole.dll
