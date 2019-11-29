@@ -8,17 +8,21 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import '@fullcalendar/timegrid/main.css';
 import timelinePlugin from '@fullcalendar/timeline';
-import { Card, CardContent, colors, createStyles, Theme, useMediaQuery, useTheme } from '@material-ui/core';
+import { Button, Card, CardContent, colors, createStyles, Grid, Theme, useMediaQuery, useTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
+import { render } from 'react-dom';
 import { connect } from 'react-redux';
-
+import { IRoomDto } from '../../../api/requests/booking/room.dto';
 import TitleContainerPage from '../../../components/common/titleContainerPage';
+import PopupDialog from '../../../components/dialog';
 import { getAppointments, getAppointmentsWithRoomsSelector, IAppointment } from '../../../ducks/booking/appointment';
-import { getRooms } from '../../../ducks/booking/rooms';
+import { getRooms, getRoomsList } from '../../../ducks/booking/rooms';
 import { IReduxState } from '../../../reduxx/reducer';
+import CalendarLegend from './components/calendarLegend';
 import CalendarToolbar from './components/calendarToolbar';
+import EventView from './components/eventView';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -88,6 +92,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IStatedProps {
     appointments: IAppointment[];
     roomsExists: boolean;
+    rooms: IRoomDto[];
 }
 
 interface IDispatchedProps {
@@ -104,6 +109,8 @@ const BookingSchedulePage = (props: IProps) => {
     const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
     const [view, setView] = useState(mobileDevice ? 'listWeek' : 'dayGridMonth');
     const [date, setDate] = useState(moment().toDate());
+    const [eventPopupOpened, setEventPopupOpened] = useState(false);
+    const [viewEvent, setViewEvent] = useState<IAppointment>();
 
     const [eventModal, setEventModal] = useState({
         open: false,
@@ -170,8 +177,35 @@ const BookingSchedulePage = (props: IProps) => {
         setDate(calendarApi.getDate());
     };
 
+    const eventClick = (arg: any) => {
+        const { el, event, jsEvent } = arg;
+        setViewEvent(arg);
+        setEventPopupOpened(true);
+    };
+    const eventRenderer = (arg: { event: any; el: HTMLElement; view: any }) => {
+        render(
+            <div className="fc-content" style={{ display: 'flex', flexDirection: 'column' }}>
+                <span className="fc-time">
+                    {moment(arg.event.start).format('HH:mm')} - {moment(arg.event.end).format('HH:mm')}
+                </span>
+                <span className="fc-title" style={{ whiteSpace: 'normal' }}>
+                    {arg.event.title}
+                </span>
+            </div>,
+            arg.el,
+        );
+    };
+
     return (
-        <TitleContainerPage subtitle="Бронирование" title="Calendar">
+        <TitleContainerPage
+            subtitle="Бронирование"
+            title="Calendar"
+            buttons={
+                <Button variant="contained" color="primary">
+                    Новая встреча
+                </Button>
+            }
+        >
             <div className={classes.root}>
                 <CalendarToolbar
                     date={date}
@@ -182,34 +216,49 @@ const BookingSchedulePage = (props: IProps) => {
                     onViewChange={handleViewChange}
                     view={view}
                 />
-                <Card className={classes.card}>
-                    <CardContent>
-                        {props.appointments.length > 0 && (
-                            <FullCalendar
-                                allDayMaintainDuration
-                                defaultDate={date}
-                                defaultView={view}
-                                droppable
-                                editable
-                                eventResizableFromStart
-                                events={props.appointments}
-                                header={false}
-                                height={800}
-                                plugins={[
-                                    dayGridPlugin,
-                                    timeGridPlugin,
-                                    interactionPlugin,
-                                    listPlugin,
-                                    timelinePlugin,
-                                ]}
-                                ref={calendarRef}
-                                rerenderDelay={10}
-                                selectable
-                                weekends
-                            />
-                        )}
-                    </CardContent>
-                </Card>
+                <Grid spacing={2} container={true}>
+                    <Grid item={true} xs={10}>
+                        <Card className={classes.card}>
+                            <CardContent>
+                                {props.appointments.length > 0 && (
+                                    <FullCalendar
+                                        allDayMaintainDuration
+                                        defaultDate={date}
+                                        defaultView={view}
+                                        eventRender={eventRenderer}
+                                        droppable
+                                        editable
+                                        eventResizableFromStart
+                                        events={props.appointments}
+                                        eventClick={eventClick}
+                                        eventTimeFormat={{
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            hour12: false,
+                                        }}
+                                        header={false}
+                                        height={800}
+                                        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, timelinePlugin]}
+                                        ref={calendarRef}
+                                        rerenderDelay={10}
+                                        selectable
+                                        weekends
+                                    />
+                                )}
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item={true} xs={2}>
+                        <Card className={classes.card} style={{ padding: 0 }}>
+                            <CardContent>
+                                <CalendarLegend rooms={props.rooms} />
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+                <PopupDialog title="Бронирование" onClose={() => setEventPopupOpened(false)} isOpen={eventPopupOpened} saveButtonDisabled={true}>
+                    {viewEvent && <EventView event={viewEvent} />}
+                </PopupDialog>
             </div>
         </TitleContainerPage>
     );
@@ -218,6 +267,7 @@ const BookingSchedulePage = (props: IProps) => {
 const mapStateToProps = (state: IReduxState): IStatedProps => ({
     appointments: getAppointmentsWithRoomsSelector(state),
     roomsExists: state.rooms.get('rooms').count() !== 0,
+    rooms: getRoomsList(state),
 });
 
 export default connect<IStatedProps, IDispatchedProps, void, IReduxState>(

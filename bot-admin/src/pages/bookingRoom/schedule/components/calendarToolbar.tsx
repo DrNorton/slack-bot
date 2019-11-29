@@ -84,7 +84,6 @@ const CalendarToolbar = (props: IProps) => {
                     </Grid>
                 </Hidden>
             </Grid>
-
         </div>
     );
 };
