@@ -1,3 +1,5 @@
+import { IMemberDto } from '../member.dto';
+
 export interface IAppointmentDto {
     id: number;
     roomId: number;
@@ -5,4 +7,5 @@ export interface IAppointmentDto {
     desc: string;
     start: Date;
     end: Date;
+    members: IMemberDto[];
 }

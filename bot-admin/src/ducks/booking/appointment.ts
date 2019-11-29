@@ -11,6 +11,7 @@ import { bindAsyncAction } from 'typescript-fsa-redux-saga';
 import ApiService from '../../api/apiService';
 import { IAppointmentDto } from '../../api/requests/booking/appointment.dto';
 import { IRoomDto } from '../../api/requests/booking/room.dto';
+import { IMemberDto } from '../../api/requests/member.dto';
 import appConfig from '../../appconf';
 import { ApiError } from '../../models/apiError';
 import { ILoadingData } from '../../models/loadingData';
@@ -28,6 +29,7 @@ export interface IAppointment {
     description: string;
     color: string;
     start: Date;
+    members: IMemberDto[];
     end: Date;
     extendedProps: { id: number; room?: IRoomDto; roomId: number };
 }
@@ -66,6 +68,7 @@ export const getAppointmentsWithRoomsSelector = createSelector(
                 end: moment(appointment.end).toDate(),
                 start: moment(appointment.start).toDate(),
                 color: findedRoom ? findedRoom.color : colors.green['700'],
+                members: appointment.members,
                 extendedProps: {
                     id: appointment.id,
                     room: findedRoom,
