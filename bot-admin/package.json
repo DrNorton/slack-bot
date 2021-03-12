@@ -64,7 +64,7 @@
     "react-app-polyfill": "^1.0.1",
     "react-color": "^2.17.3",
     "react-copy-to-clipboard": "^5.0.1",
-    "react-dev-utils": "^9.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.13.2",
     "react-dropzone": "^10.1.7",
