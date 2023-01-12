@@ -47,7 +47,7 @@
     "botbuilder-adapter-slack": "^1.0.5",
     "botkit": "^4.5.0",
     "class-transformer": "^0.2.3",
-    "class-validator": "0.9.1",
+    "class-validator": "0.14.0",
     "clickhouse": "^1.2.21",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
